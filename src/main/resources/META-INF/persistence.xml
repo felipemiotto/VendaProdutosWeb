@@ -5,6 +5,9 @@
     <class>Model.Estado</class>
     <class>Model.Cidade</class>
     <class>Model.Pais</class>
+    <class>Model.Grupo</class>
+    <class>Model.Produto</class>
+    <class>Model.Cep</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/vendaprodutosweb"/>
