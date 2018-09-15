@@ -8,6 +8,13 @@
     <class>Model.Grupo</class>
     <class>Model.Produto</class>
     <class>Model.Cep</class>
+    <class>Model.Documento</class>
+    <class>Model.Cep_1</class>
+    <class>Model.Cliente</class>
+    <class>Model.Venda</class>
+    <class>Model.ItensVenda</class>
+    <class>Model.Produto_1</class>
+    <class>Model.Grupo_1</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/vendaprodutosweb"/>

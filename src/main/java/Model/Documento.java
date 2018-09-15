@@ -8,13 +8,10 @@ package Model;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -26,18 +23,19 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author felip
+ * @author luizf
  */
 @Entity
-@Table(name = "cidade")
+@Table(name = "documento")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Cidade.findAll", query = "SELECT c FROM Cidade c")
-    , @NamedQuery(name = "Cidade.findByNome", query = "SELECT c FROM Cidade c WHERE c.nome = :nome")})
-public class Cidade implements Serializable {
+    @NamedQuery(name = "Documento.findAll", query = "SELECT d FROM Documento d")
+    , @NamedQuery(name = "Documento.findByCodigo", query = "SELECT d FROM Documento d WHERE d.codigo = :codigo")
+    , @NamedQuery(name = "Documento.findByDescricao", query = "SELECT d FROM Documento d WHERE d.descricao = :descricao")})
+public class Documento implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cidadeId")
-    private Collection<Cep> cepCollection;
+    @OneToMany(mappedBy = "documentoId")
+    private Collection<Venda> vendaCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,23 +46,26 @@ public class Cidade implements Serializable {
     private Object id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "nome")
-    private String nome;
-    @JoinColumn(name = "estado_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Estado estadoId;
+    @Size(min = 1, max = 10)
+    @Column(name = "codigo")
+    private String codigo;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "descricao")
+    private String descricao;
 
-    public Cidade() {
+    public Documento() {
     }
 
-    public Cidade(Object id) {
+    public Documento(Object id) {
         this.id = id;
     }
 
-    public Cidade(Object id, String nome) {
+    public Documento(Object id, String codigo, String descricao) {
         this.id = id;
-        this.nome = nome;
+        this.codigo = codigo;
+        this.descricao = descricao;
     }
 
     public Object getId() {
@@ -75,20 +76,20 @@ public class Cidade implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
-    public Estado getEstadoId() {
-        return estadoId;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setEstadoId(Estado estadoId) {
-        this.estadoId = estadoId;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     @Override
@@ -101,10 +102,10 @@ public class Cidade implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cidade)) {
+        if (!(object instanceof Documento)) {
             return false;
         }
-        Cidade other = (Cidade) object;
+        Documento other = (Documento) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -113,16 +114,16 @@ public class Cidade implements Serializable {
 
     @Override
     public String toString() {
-        return "Model.Cidade[ id=" + id + " ]";
+        return "Model.Documento[ id=" + id + " ]";
     }
 
     @XmlTransient
-    public Collection<Cep> getCepCollection() {
-        return cepCollection;
+    public Collection<Venda> getVendaCollection() {
+        return vendaCollection;
     }
 
-    public void setCepCollection(Collection<Cep> cepCollection) {
-        this.cepCollection = cepCollection;
+    public void setVendaCollection(Collection<Venda> vendaCollection) {
+        this.vendaCollection = vendaCollection;
     }
     
 }
