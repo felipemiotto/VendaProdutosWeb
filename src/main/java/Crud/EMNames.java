@@ -5,6 +5,7 @@
  */
 package Crud;
 
+import Utilitarios.Util;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,19 +14,22 @@ import java.util.Map;
  * @author felip
  */
 public class EMNames {
-    
+
     public static final String EMN1 = "sfpaPU";
 
     public static Map<String, String> getEMN1Props() {
+
+        //chama o metodo para setar as variveis de conexão com o banco de dados
+        Util.extraiConexao();
 
         String heroku_db = System.getenv("DATABASE_URL"); // variavel de ambiente criada pelo Heroku
         Map<String, String> properties = new HashMap<>();
 
         if (heroku_db == null) { //caso nao tenhamos a variavel de ambiente       
-            properties.put("javax.persistence.jdbc.url", "jdbc:postgresql://localhost:5432/vendaprodutosweb");
-            properties.put("javax.persistence.jdbc.user", "postgres");
+            properties.put("javax.persistence.jdbc.url", "jdbc:postgresql://localhost:5432/" + Util.banco);
+            properties.put("javax.persistence.jdbc.user", Util.usuario);
             properties.put("javax.persistence.jdbc.driver", "org.postgresql.Driver");
-            properties.put("javax.persistence.jdbc.password", "1324");
+            properties.put("javax.persistence.jdbc.password", Util.senha);
         } else { //se a variavel de ambiente foi criada, indica que o projeto está alocado no heroku
             //   properties.put("javax.persistence.jdbc.url", "jdbc:postgresql://ec2-184-73-202-79.compute-1.amazonaws.com:5432/d27dm10t2iscbc?sslmode=require");
             //   properties.put("javax.persistence.jdbc.user", "okdvfyabceaqmz");
