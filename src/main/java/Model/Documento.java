@@ -7,6 +7,7 @@ package Model;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.UUID;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Documento.findAll", query = "SELECT d FROM Documento d")
     , @NamedQuery(name = "Documento.findByCodigo", query = "SELECT d FROM Documento d WHERE d.codigo = :codigo")
-    , @NamedQuery(name = "Documento.findByDescricao", query = "SELECT d FROM Documento d WHERE UPPER (d.descricao) LIKE = :descricao")})
+    , @NamedQuery(name = "Documento.findByDescricao", query = "SELECT d FROM Documento d WHERE UPPER(d.descricao) LIKE :descricao")})
 public class Documento implements Serializable {
 
     @OneToMany(mappedBy = "documentoId")
@@ -42,8 +43,8 @@ public class Documento implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Column(name = "id")
-    private String id;
+    @Column(name = "id", columnDefinition = "uuid")
+    private UUID id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 10)
@@ -58,21 +59,21 @@ public class Documento implements Serializable {
     public Documento() {
     }
 
-    public Documento(String id) {
+    public Documento(UUID id) {
         this.id = id;
     }
 
-    public Documento(String id, String codigo, String descricao) {
+    public Documento(UUID id, String codigo, String descricao) {
         this.id = id;
         this.codigo = codigo;
         this.descricao = descricao;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -125,5 +126,5 @@ public class Documento implements Serializable {
     public void setVendaCollection(Collection<Venda> vendaCollection) {
         this.vendaCollection = vendaCollection;
     }
-    
+
 }

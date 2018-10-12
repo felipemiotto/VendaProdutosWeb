@@ -11,6 +11,7 @@ import Model.Cep;
 import Model.Grupo;
 import Model.Produto;
 import java.math.BigDecimal;
+import java.util.UUID;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -26,7 +27,7 @@ import javax.persistence.Persistence;
 @RequestScoped
 public class JsfProduto {
     
-    private String id;
+    private UUID id;
     private String descricao;
     private String unidade;
     private BigDecimal peso;
@@ -40,11 +41,11 @@ public class JsfProduto {
     public JsfProduto(){        
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -117,7 +118,7 @@ public class JsfProduto {
         
         Exception insert = new Crud.CrudProduto().persist(produto);
         if(insert == null){
-           this.setId("");
+           this.setId(null);
            this.setCusto(null);
            this.setDescricao("");
            this.setIdGrupo(null);
@@ -179,7 +180,7 @@ public class JsfProduto {
         produto.setDescricao(descricao);
         Exception e = new CrudProduto().merge(produto);
         if (e == null) {
-            this.setId("");
+            this.setId(null);
             this.setCusto(null);
             this.setDescricao("");
             this.setIdGrupo(null);

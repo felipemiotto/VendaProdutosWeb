@@ -15,6 +15,7 @@
         <class>Model.ItensVenda</class>
         <class>Model.Produto_1</class>
         <class>Model.Grupo_1</class>
+        <class>Utilitarios.PostgreUuidConverter</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
     </persistence-unit>
 </persistence>

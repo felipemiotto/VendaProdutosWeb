@@ -33,10 +33,9 @@ public class Util {
      *
      * @return
      */
-    public static String geraId() {
+    public static UUID geraId() {
         UUID id = UUID.randomUUID();
-        String valor = id.toString().toUpperCase();
-        return valor;
+        return id;
     }
 
     /**

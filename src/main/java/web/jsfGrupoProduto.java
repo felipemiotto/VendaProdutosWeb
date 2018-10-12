@@ -10,6 +10,7 @@ import Crud.CrudGrupoProduto;
 import Model.Cep;
 import Model.Grupo;
 import java.util.List;
+import java.util.UUID;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -25,7 +26,7 @@ import javax.persistence.Persistence;
 @RequestScoped
 public class jsfGrupoProduto {
     
-    private Object id;
+    private UUID id;
     private String codigo;
     private String nome;
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_vendaprodutosweb_war_1.0-SNAPSHOTPU");
@@ -33,11 +34,11 @@ public class jsfGrupoProduto {
     public jsfGrupoProduto(){        
     }
 
-    public Object getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -67,7 +68,7 @@ public class jsfGrupoProduto {
         grupo.setId(Utilitarios.Util.geraId());
         Exception insert = new Crud.CrudGrupoProduto().persist(grupo);
         if(insert == null){
-           this.setId(0);
+           this.setId(null);
            this.setNome("");
            this.setCodigo("");
            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!!", "Registro adicionado com sucesso");
@@ -122,7 +123,7 @@ public class jsfGrupoProduto {
         grupo.setNome(nome);
         Exception e = new CrudGrupoProduto().merge(grupo);
         if (e == null) {
-            this.setId(0);
+            this.setId(null);
             this.setCodigo("");
             this.setNome("");
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!!", "Registro alterado com sucesso");

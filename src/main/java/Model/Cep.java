@@ -6,6 +6,7 @@
 package Model;
 
 import java.io.Serializable;
+import java.util.UUID;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,10 +25,9 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author alex
  */
-
 /**
  * Classe de armazenamento do CEP
- * 
+ *
  */
 @Entity
 @Table(name = "cep")
@@ -42,8 +42,8 @@ public class Cep implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Column(name = "id")
-    private String id;
+    @Column(name = "id", columnDefinition = "uuid")
+    private UUID id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 8)
@@ -64,20 +64,20 @@ public class Cep implements Serializable {
     public Cep() {
     }
 
-    public Cep(String id) {
+    public Cep(UUID id) {
         this.id = id;
     }
 
-    public Cep(String id, String cep) {
+    public Cep(UUID id, String cep) {
         this.id = id;
         this.cep = cep;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -113,5 +113,5 @@ public class Cep implements Serializable {
     public String toString() {
         return "Model.Cep[ id=" + id + " ]";
     }
-    
+
 }

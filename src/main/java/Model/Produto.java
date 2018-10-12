@@ -7,6 +7,7 @@ package Model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.UUID;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -48,7 +49,7 @@ public class Produto implements Serializable {
     @NotNull
     @Lob
     @Column(name = "id")
-    private String id;
+    private UUID id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
@@ -79,11 +80,11 @@ public class Produto implements Serializable {
     public Produto() {
     }
 
-    public Produto(String id) {
+    public Produto(UUID id) {
         this.id = id;
     }
 
-    public Produto(String id, String descricao, String unidade, BigDecimal peso, BigDecimal preco, BigDecimal custo) {
+    public Produto(UUID id, String descricao, String unidade, BigDecimal peso, BigDecimal preco, BigDecimal custo) {
         this.id = id;
         this.descricao = descricao;
         this.unidade = unidade;
@@ -92,11 +93,11 @@ public class Produto implements Serializable {
         this.custo = custo;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

@@ -7,6 +7,7 @@ package Model;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.UUID;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -45,7 +46,7 @@ public class Cidade implements Serializable {
     @NotNull
     @Lob
     @Column(name = "id")
-    private String id;
+    private UUID id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
@@ -58,20 +59,20 @@ public class Cidade implements Serializable {
     public Cidade() {
     }
 
-    public Cidade(String id) {
+    public Cidade(UUID id) {
         this.id = id;
     }
 
-    public Cidade(String id, String nome) {
+    public Cidade(UUID id, String nome) {
         this.id = id;
         this.nome = nome;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

@@ -8,6 +8,7 @@ package web;
 import Crud.CrudDocumento;
 import Model.Documento;
 import Utilitarios.Util;
+import java.util.UUID;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -29,15 +30,15 @@ public class JsfDocumento {
     public JsfDocumento() {
     }
 
-    private String id;
+    private UUID id;
     private String codigo;
     private String descricao;
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -63,7 +64,7 @@ public class JsfDocumento {
         documento.setId(id);
         documento.setCodigo(codigo);
         documento.setDescricao(descricao);
-        
+
         Exception insert = new CrudDocumento().persist(documento);
         if (insert == null) {
             this.setCodigo(null);
@@ -74,10 +75,9 @@ public class JsfDocumento {
 
         } else {
             String msg = insert.getMessage();
-            Util.log(msg);
-            System.out.println("teste" + msg);
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Informe o administrador do erro: " + msg);
             FacesContext.getCurrentInstance().addMessage(null, message);
+            Util.log(msg);
             return null;
         }
 
