@@ -23,18 +23,18 @@ import javax.persistence.Persistence;
 @RequestScoped
 public class JsfCep {
     
-    private Object id;
+    private String id;
     private String cep;
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_vendaprodutosweb_war_1.0-SNAPSHOTPU");
     
     public JsfCep(){        
     }
 
-    public Object getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -53,7 +53,7 @@ public class JsfCep {
         Cep.setId(Utilitarios.Util.geraId());
         Exception insert = new Crud.CrudCep().persist(Cep);
         if(insert == null){
-           this.setId(0);
+           this.setId("");
            this.setCep("");
            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!!", "Registro adicionado com sucesso");
            FacesContext.getCurrentInstance().addMessage(null, message);
@@ -105,7 +105,7 @@ public class JsfCep {
         Cep.setCep(cep);
         Exception e = new CrudCep().merge(Cep);
         if (e == null) {
-            this.setId(0);
+            this.setId("");
             this.setCep("");
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!!", "Registro alterado com sucesso");
             FacesContext.getCurrentInstance().addMessage(null, message);

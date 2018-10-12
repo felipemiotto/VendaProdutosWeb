@@ -49,7 +49,7 @@ public class Venda implements Serializable {
     @NotNull
     @Lob
     @Column(name = "id")
-    private Object id;
+    private String id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 10)
@@ -81,11 +81,11 @@ public class Venda implements Serializable {
     public Venda() {
     }
 
-    public Venda(Object id) {
+    public Venda(String id) {
         this.id = id;
     }
 
-    public Venda(Object id, String numero, Date emissao, BigDecimal desconto, BigDecimal total) {
+    public Venda(String id, String numero, Date emissao, BigDecimal desconto, BigDecimal total) {
         this.id = id;
         this.numero = numero;
         this.emissao = emissao;
@@ -93,11 +93,11 @@ public class Venda implements Serializable {
         this.total = total;
     }
 
-    public Object getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Object id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -41,7 +41,7 @@ public class Pais implements Serializable {
     @NotNull
     @Lob
     @Column(name = "id")
-    private Object id;
+    private String id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -58,11 +58,11 @@ public class Pais implements Serializable {
     public Pais() {
     }
 
-    public Pais(Object id) {
+    public Pais(String id) {
         this.id = id;
     }
 
-    public Pais(Object id, String nome, String codigo) {
+    public Pais(String id, String nome, String codigo) {
         this.id = id;
         this.nome = nome;
         this.codigo = codigo;
@@ -72,7 +72,7 @@ public class Pais implements Serializable {
         return id;
     }
 
-    public void setId(Object id) {
+    public void setId(String id) {
         this.id = id;
     }
 

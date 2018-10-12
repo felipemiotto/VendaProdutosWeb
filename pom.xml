@@ -40,8 +40,6 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.2.5.jre7</version>
-            <type>tar.gz</type>
-            <classifier>dist</classifier>
         </dependency>
         <dependency>
             <groupId>javax</groupId>

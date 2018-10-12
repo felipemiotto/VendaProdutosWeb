@@ -1,26 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-  <persistence-unit name="sfpaPU" transaction-type="RESOURCE_LOCAL">
-    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>Model.Estado</class>
-    <class>Model.Cidade</class>
-    <class>Model.Pais</class>
-    <class>Model.Grupo</class>
-    <class>Model.Produto</class>
-    <class>Model.Cep</class>
-    <class>Model.Documento</class>
-    <class>Model.Cep_1</class>
-    <class>Model.Cliente</class>
-    <class>Model.Venda</class>
-    <class>Model.ItensVenda</class>
-    <class>Model.Produto_1</class>
-    <class>Model.Grupo_1</class>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
-    <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/vendaprodutosweb"/>
-      <property name="javax.persistence.jdbc.user" value="postgres"/>
-      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="1324"/>
-    </properties>
-  </persistence-unit>
+    <persistence-unit name="sfpaPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>Model.Estado</class>
+        <class>Model.Cidade</class>
+        <class>Model.Pais</class>
+        <class>Model.Grupo</class>
+        <class>Model.Produto</class>
+        <class>Model.Cep</class>
+        <class>Model.Documento</class>
+        <class>Model.Cep_1</class>
+        <class>Model.Cliente</class>
+        <class>Model.Venda</class>
+        <class>Model.ItensVenda</class>
+        <class>Model.Produto_1</class>
+        <class>Model.Grupo_1</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    </persistence-unit>
 </persistence>

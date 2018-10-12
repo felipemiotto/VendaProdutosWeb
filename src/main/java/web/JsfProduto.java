@@ -26,7 +26,7 @@ import javax.persistence.Persistence;
 @RequestScoped
 public class JsfProduto {
     
-    private Object id;
+    private String id;
     private String descricao;
     private String unidade;
     private BigDecimal peso;
@@ -40,11 +40,11 @@ public class JsfProduto {
     public JsfProduto(){        
     }
 
-    public Object getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Object id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -117,7 +117,7 @@ public class JsfProduto {
         
         Exception insert = new Crud.CrudProduto().persist(produto);
         if(insert == null){
-           this.setId(0);
+           this.setId("");
            this.setCusto(null);
            this.setDescricao("");
            this.setIdGrupo(null);
@@ -179,7 +179,7 @@ public class JsfProduto {
         produto.setDescricao(descricao);
         Exception e = new CrudProduto().merge(produto);
         if (e == null) {
-            this.setId(0);
+            this.setId("");
             this.setCusto(null);
             this.setDescricao("");
             this.setIdGrupo(null);

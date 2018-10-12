@@ -43,7 +43,7 @@ public class Estado implements Serializable {
     @NotNull
     @Lob
     @Column(name = "id")
-    private Object id;
+    private String id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
@@ -63,21 +63,21 @@ public class Estado implements Serializable {
     public Estado() {
     }
 
-    public Estado(Object id) {
+    public Estado(String id) {
         this.id = id;
     }
 
-    public Estado(Object id, String nome, String sigla) {
+    public Estado(String id, String nome, String sigla) {
         this.id = id;
         this.nome = nome;
         this.sigla = sigla;
     }
 
-    public Object getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Object id) {
+    public void setId(String id) {
         this.id = id;
     }
 

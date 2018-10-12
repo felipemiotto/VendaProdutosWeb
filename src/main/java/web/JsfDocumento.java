@@ -29,15 +29,15 @@ public class JsfDocumento {
     public JsfDocumento() {
     }
 
-    private Object id;
+    private String id;
     private String codigo;
     private String descricao;
 
-    public Object getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Object id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -63,7 +63,7 @@ public class JsfDocumento {
         documento.setId(id);
         documento.setCodigo(codigo);
         documento.setDescricao(descricao);
-        //.setTeste1(new CrudTeste1().find(this.getCodTeste1()));
+        
         Exception insert = new CrudDocumento().persist(documento);
         if (insert == null) {
             this.setCodigo(null);
@@ -75,6 +75,7 @@ public class JsfDocumento {
         } else {
             String msg = insert.getMessage();
             Util.log(msg);
+            System.out.println("teste" + msg);
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Informe o administrador do erro: " + msg);
             FacesContext.getCurrentInstance().addMessage(null, message);
             return null;

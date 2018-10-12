@@ -10,7 +10,9 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -41,30 +43,41 @@ public class Cep implements Serializable {
     @NotNull
     @Lob
     @Column(name = "id")
-    private Object id;
+    private String id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 8)
     @Column(name = "cep")
     private String cep;
+    @JoinColumn(name = "cidade_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Cidade cidadeId;
+
+    public Cidade getCidadeId() {
+        return cidadeId;
+    }
+
+    public void setCidadeId(Cidade cidadeId) {
+        this.cidadeId = cidadeId;
+    }
 
     public Cep() {
     }
 
-    public Cep(Object id) {
+    public Cep(String id) {
         this.id = id;
     }
 
-    public Cep(Object id, String cep) {
+    public Cep(String id, String cep) {
         this.id = id;
         this.cep = cep;
     }
 
-    public Object getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Object id) {
+    public void setId(String id) {
         this.id = id;
     }
 

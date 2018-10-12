@@ -45,7 +45,7 @@ public class Cidade implements Serializable {
     @NotNull
     @Lob
     @Column(name = "id")
-    private Object id;
+    private String id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
@@ -58,20 +58,20 @@ public class Cidade implements Serializable {
     public Cidade() {
     }
 
-    public Cidade(Object id) {
+    public Cidade(String id) {
         this.id = id;
     }
 
-    public Cidade(Object id, String nome) {
+    public Cidade(String id, String nome) {
         this.id = id;
         this.nome = nome;
     }
 
-    public Object getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Object id) {
+    public void setId(String id) {
         this.id = id;
     }
 

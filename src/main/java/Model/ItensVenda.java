@@ -41,7 +41,7 @@ public class ItensVenda implements Serializable {
     @NotNull
     @Lob
     @Column(name = "id")
-    private Object id;
+    private String id;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @NotNull
@@ -69,11 +69,11 @@ public class ItensVenda implements Serializable {
     public ItensVenda() {
     }
 
-    public ItensVenda(Object id) {
+    public ItensVenda(String id) {
         this.id = id;
     }
 
-    public ItensVenda(Object id, BigDecimal quantidade, BigDecimal valorUnitario, BigDecimal valorTotal, BigDecimal desconto) {
+    public ItensVenda(String id, BigDecimal quantidade, BigDecimal valorUnitario, BigDecimal valorTotal, BigDecimal desconto) {
         this.id = id;
         this.quantidade = quantidade;
         this.valorUnitario = valorUnitario;
@@ -81,11 +81,11 @@ public class ItensVenda implements Serializable {
         this.desconto = desconto;
     }
 
-    public Object getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Object id) {
+    public void setId(String id) {
         this.id = id;
     }
 

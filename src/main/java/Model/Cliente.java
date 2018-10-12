@@ -52,7 +52,7 @@ public class Cliente implements Serializable {
     @NotNull
     @Lob
     @Column(name = "id")
-    private Object id;
+    private String id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
@@ -93,11 +93,11 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
-    public Cliente(Object id) {
+    public Cliente(String id) {
         this.id = id;
     }
 
-    public Cliente(Object id, String nome, String endereco, String bairro, String cpf) {
+    public Cliente(String id, String nome, String endereco, String bairro, String cpf) {
         this.id = id;
         this.nome = nome;
         this.endereco = endereco;
@@ -105,11 +105,11 @@ public class Cliente implements Serializable {
         this.cpf = cpf;
     }
 
-    public Object getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Object id) {
+    public void setId(String id) {
         this.id = id;
     }
 

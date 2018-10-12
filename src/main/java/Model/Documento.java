@@ -43,7 +43,7 @@ public class Documento implements Serializable {
     @NotNull
     @Lob
     @Column(name = "id")
-    private Object id;
+    private String id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 10)
@@ -58,21 +58,21 @@ public class Documento implements Serializable {
     public Documento() {
     }
 
-    public Documento(Object id) {
+    public Documento(String id) {
         this.id = id;
     }
 
-    public Documento(Object id, String codigo, String descricao) {
+    public Documento(String id, String codigo, String descricao) {
         this.id = id;
         this.codigo = codigo;
         this.descricao = descricao;
     }
 
-    public Object getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Object id) {
+    public void setId(String id) {
         this.id = id;
     }
 

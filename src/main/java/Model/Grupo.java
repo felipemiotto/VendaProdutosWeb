@@ -46,7 +46,7 @@ public class Grupo implements Serializable {
     @NotNull
     @Lob
     @Column(name = "id")
-    private Object id;
+    private String id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 10)
@@ -63,21 +63,21 @@ public class Grupo implements Serializable {
     public Grupo() {
     }
 
-    public Grupo(Object id) {
+    public Grupo(String id) {
         this.id = id;
     }
 
-    public Grupo(Object id, String codigo, String nome) {
+    public Grupo(String id, String codigo, String nome) {
         this.id = id;
         this.codigo = codigo;
         this.nome = nome;
     }
 
-    public Object getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Object id) {
+    public void setId(String id) {
         this.id = id;
     }
 

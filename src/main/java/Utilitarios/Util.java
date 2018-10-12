@@ -15,7 +15,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
-    
+import javax.faces.context.FacesContext;
+
 /**
  *
  * @author luizf
@@ -71,11 +72,11 @@ public class Util {
     }
 
     /**
-     * Metodo para extrair os dados de conexão com o banco de dados 
+     * Metodo para extrair os dados de conexão com o banco de dados
      */
     public static void extraiConexao() {
         try {
-            FileReader fileReader = new FileReader(new File("").getAbsolutePath()+"\\conecta.txt");
+            FileReader fileReader = new FileReader(new File("").getAbsolutePath() + "\\conecta.txt");
             BufferedReader br = new BufferedReader(fileReader);
             String valores = br.readLine();
             String[] array = valores.split(",");

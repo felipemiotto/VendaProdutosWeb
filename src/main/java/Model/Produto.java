@@ -48,7 +48,7 @@ public class Produto implements Serializable {
     @NotNull
     @Lob
     @Column(name = "id")
-    private Object id;
+    private String id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
@@ -79,11 +79,11 @@ public class Produto implements Serializable {
     public Produto() {
     }
 
-    public Produto(Object id) {
+    public Produto(String id) {
         this.id = id;
     }
 
-    public Produto(Object id, String descricao, String unidade, BigDecimal peso, BigDecimal preco, BigDecimal custo) {
+    public Produto(String id, String descricao, String unidade, BigDecimal peso, BigDecimal preco, BigDecimal custo) {
         this.id = id;
         this.descricao = descricao;
         this.unidade = unidade;
@@ -92,11 +92,11 @@ public class Produto implements Serializable {
         this.custo = custo;
     }
 
-    public Object getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Object id) {
+    public void setId(String id) {
         this.id = id;
     }
 
