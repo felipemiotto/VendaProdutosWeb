@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Documento.findAll", query = "SELECT d FROM Documento d")
     , @NamedQuery(name = "Documento.findByCodigo", query = "SELECT d FROM Documento d WHERE d.codigo = :codigo")
-    , @NamedQuery(name = "Documento.findByDescricao", query = "SELECT d FROM Documento d WHERE d.descricao = :descricao")})
+    , @NamedQuery(name = "Documento.findByDescricao", query = "SELECT d FROM Documento d WHERE UPPER (d.descricao) LIKE = :descricao")})
 public class Documento implements Serializable {
 
     @OneToMany(mappedBy = "documentoId")
