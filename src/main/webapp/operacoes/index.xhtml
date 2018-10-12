@@ -8,6 +8,22 @@
     </h:head>
     <h:body>
         <div id="page">
+	    <div id="header">              
+		<ui:insert name="header" >
+		  <ui:include src="cabec.xhtml" />
+		</ui:insert>
+	    </div>
+            
+	    <div id="content">
+                1112
+	  	<ui:insert name="content" >
+	 	  <ui:include src="content.xhtml" />
+	   	</ui:insert>
+	    </div>
+ 
+	    <div id="footer">
+                <ui:insert name="footer">
+                    <ui:include src="footer.xhtml"/>
             <div id="header">              
                 <ui:insert name="header" >
                     <ui:include src="cabec.xhtml" />
