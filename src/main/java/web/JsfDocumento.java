@@ -8,6 +8,7 @@ package web;
 import Crud.CrudDocumento;
 import Model.Documento;
 import Utilitarios.Util;
+import java.util.List;
 import java.util.UUID;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -24,15 +25,17 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 public class JsfDocumento {
 
+    
+    private UUID id;
+    private String codigo;
+    private String descricao;
+    CrudDocumento crudDocumento = new CrudDocumento();
     /**
      * Creates a new instance of JsfDocumento
      */
     public JsfDocumento() {
     }
 
-    private UUID id;
-    private String codigo;
-    private String descricao;
 
     public UUID getId() {
         return id;
@@ -83,4 +86,15 @@ public class JsfDocumento {
 
         return "/operacoes/index.xhtml";
     }
+    /**
+     * Método que retorna uma lista de todos documentos registrado no banco de dados
+     * @return 
+     */
+    public List<Documento> listaTodos(){
+        List<Documento> lst;
+        lst = crudDocumento.getAll();
+        return lst;
+    }
+    
+    
 }
