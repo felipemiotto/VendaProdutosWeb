@@ -7,6 +7,7 @@ package Model;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.UUID;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -35,44 +36,46 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Pais.findByCodigo", query = "SELECT p FROM Pais p WHERE p.codigo = :codigo")})
 public class Pais implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    @OneToMany(mappedBy = "paisId")
+    private Collection<Estado> estadoCollection;
+    
+       private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Column(name = "id")
-    private String id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "nome")
-    private String nome;
+    @Column(name = "id", columnDefinition = "uuid")
+    private UUID id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 10)
     @Column(name = "codigo")
     private String codigo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "paisId")
-    private Collection<Estado> estadoCollection;
-
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "nome")
+    private String nome;
+    
     public Pais() {
     }
-
-    public Pais(String id) {
+    
+    public Pais(UUID id) {
         this.id = id;
     }
 
-    public Pais(String id, String nome, String codigo) {
+    public Pais(UUID id, String nome, String codigo, Collection<Estado> estadoCollection) {
         this.id = id;
         this.nome = nome;
         this.codigo = codigo;
+        this.estadoCollection = estadoCollection;
     }
 
-    public Object getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
