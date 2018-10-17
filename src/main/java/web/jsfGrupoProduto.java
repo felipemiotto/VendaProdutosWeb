@@ -50,7 +50,7 @@ public class jsfGrupoProduto {
         this.codigo = codigo;
     }
     
-    public String getBome() {
+    public String getNome() {
         return nome;
     }
 
