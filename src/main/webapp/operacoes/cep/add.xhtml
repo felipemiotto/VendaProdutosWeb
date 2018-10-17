@@ -13,24 +13,19 @@
                     <p:autoUpdate />
                 </p:messages>
                 Cep:
-                <p:inputText value="#{jsfCep.cep}"  />
-
-                <!--<br></br>
-                Nome:
-                <p:inputText value="#{jsfTeste.nome}" />
-                
+                <p:inputText value="#{jsfCep.cep}"/>
                 <br></br>
-                Teste1:
-                <p:selectOneMenu value="#{jsfTeste.codTeste1}" required="true" requiredMessage="Selecione uma opção no menu teste 1    ">
+                Cidade:
+                <p:selectOneMenu value="#{jsfCep.idCidade}" required="true" requiredMessage="Selecione uma Cidade   ">
                     <f:selectItem  itemLabel="=== selecione um ==="/>
-                    <f:selectItems value="#{jsfTeste1.all}" var="t1" itemLabel="#{t1.nome}" itemValue="#{t1.codigo}"/>
+                    <f:selectItems value="#{jsfCep.all}" var="t1" itemLabel="#{jsfCep.cep}" itemValue="#{t1.cidadeId}"/>
                 </p:selectOneMenu>
-
                 <br></br>
-                <p:commandButton value="salvar novo registro" action="#{jsfTeste.persist()}"  ajax="false"/> 
-                -->
+                <br></br>
+                <p:commandButton value="Salvar Registro" action="#{jsfCep.persist()}"  ajax="false"/> 
             </h:form>
         </ui:define>
     </ui:composition>
+
 </html>
 

@@ -27,7 +27,7 @@ public class JsfCep {
     
     private UUID id;
     private String cep;
-    private Cidade idGidade;
+    private Cidade idCidade;
     
     CrudCep crudCep = new CrudCep();
     
@@ -50,25 +50,25 @@ public class JsfCep {
         this.cep = cep;
     }
 
-    public Cidade getIdGidade() {
-        return idGidade;
+    public Cidade getIdCidade() {
+        return idCidade;
     }
 
-    public void setIdGidade(Cidade idGidade) {
-        this.idGidade = idGidade;
+    public void setIdCidade(Cidade idCidade) {
+        this.idCidade = idCidade;
     }
     
     public String persist() {
         Model.Cep Cep;
         Cep = new Cep();
         Cep.setCep(cep);
-        Cep.setCidadeId(idGidade);
+        Cep.setCidadeId(idCidade);
         Cep.setId(Utilitarios.Util.geraId());
         Exception insert = new Crud.CrudCep().persist(Cep);
         if(insert == null){
            this.setId(null);
            this.setCep("");
-           this.setIdGidade(null);
+           this.setIdCidade(null);
            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!!", "Registro adicionado com sucesso");
            FacesContext.getCurrentInstance().addMessage(null, message);
 
@@ -110,7 +110,7 @@ public class JsfCep {
     public String update(Model.Cep Cep) {
         this.id = Cep.getId();
         this.cep = Cep.getCep();
-        this.idGidade = Cep.getCidadeId();
+        this.idCidade = Cep.getCidadeId();
         return "";
     }
 
@@ -118,7 +118,7 @@ public class JsfCep {
         Model.Cep Cep;
         Cep = new CrudCep().find(this.id);
         Cep.setCep(cep);
-        Cep.setCidadeId(idGidade);
+        Cep.setCidadeId(idCidade);
         Exception e = new CrudCep().merge(Cep);
         if (e == null) {
             this.setId(null);
