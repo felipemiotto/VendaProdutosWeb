@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="../layout_operacoes.xhtml">
+        <ui:define name="content">
+            <h1>Cadastrar Cep</h1>
+            <h:form>
+                <p:messages id="messages" showDetail="true" closable="true">
+                    <p:autoUpdate />
+                </p:messages>
+                Cep:
+                <p:inputText value="#{jsfCep.cep}"  />
+
+                <!--<br></br>
+                Nome:
+                <p:inputText value="#{jsfTeste.nome}" />
+                
+                <br></br>
+                Teste1:
+                <p:selectOneMenu value="#{jsfTeste.codTeste1}" required="true" requiredMessage="Selecione uma opção no menu teste 1    ">
+                    <f:selectItem  itemLabel="=== selecione um ==="/>
+                    <f:selectItems value="#{jsfTeste1.all}" var="t1" itemLabel="#{t1.nome}" itemValue="#{t1.codigo}"/>
+                </p:selectOneMenu>
+
+                <br></br>
+                <p:commandButton value="salvar novo registro" action="#{jsfTeste.persist()}"  ajax="false"/> 
+                -->
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+
