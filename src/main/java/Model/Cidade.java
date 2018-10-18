@@ -49,7 +49,7 @@ public class Cidade implements Serializable {
     private UUID id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 10)
     @Column(name = "nome")
     private String nome;
     @JoinColumn(name = "estado_id", referencedColumnName = "id")
