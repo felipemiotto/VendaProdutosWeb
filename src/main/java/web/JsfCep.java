@@ -7,26 +7,29 @@ package web;
 
 import Crud.CrudCep;
 import Model.Cep;
+import Model.Cidade;
 import java.util.List;
 import java.util.UUID;
+import javax.inject.Named;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 /**
  *
  * @author alexj
  */
+@Named(value = "jsfCep")
 @ManagedBean
 @RequestScoped
 public class JsfCep {
     
     private UUID id;
     private String cep;
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_vendaprodutosweb_war_1.0-SNAPSHOTPU");
+    private Cidade idCidade;
+    
+    CrudCep crudCep = new CrudCep();
     
     public JsfCep(){        
     }
@@ -47,15 +50,25 @@ public class JsfCep {
         this.cep = cep;
     }
 
+    public Cidade getIdCidade() {
+        return idCidade;
+    }
+
+    public void setIdCidade(Cidade idCidade) {
+        this.idCidade = idCidade;
+    }
+    
     public String persist() {
         Model.Cep Cep;
         Cep = new Cep();
         Cep.setCep(cep);
+        Cep.setCidadeId(idCidade);
         Cep.setId(Utilitarios.Util.geraId());
         Exception insert = new Crud.CrudCep().persist(Cep);
         if(insert == null){
            this.setId(null);
            this.setCep("");
+           this.setIdCidade(null);
            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!!", "Registro adicionado com sucesso");
            FacesContext.getCurrentInstance().addMessage(null, message);
 
@@ -97,6 +110,7 @@ public class JsfCep {
     public String update(Model.Cep Cep) {
         this.id = Cep.getId();
         this.cep = Cep.getCep();
+        this.idCidade = Cep.getCidadeId();
         return "";
     }
 
@@ -104,6 +118,7 @@ public class JsfCep {
         Model.Cep Cep;
         Cep = new CrudCep().find(this.id);
         Cep.setCep(cep);
+        Cep.setCidadeId(idCidade);
         Exception e = new CrudCep().merge(Cep);
         if (e == null) {
             this.setId(null);

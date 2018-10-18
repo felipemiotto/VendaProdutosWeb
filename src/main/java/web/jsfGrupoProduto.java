@@ -5,23 +5,20 @@
  */
 package web;
 
-import Crud.CrudCep;
 import Crud.CrudGrupoProduto;
-import Model.Cep;
 import Model.Grupo;
-import java.util.List;
 import java.util.UUID;
+import javax.inject.Named;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 /**
  *
  * @author alexj
  */
+@Named(value = "jsfGrupoProduto")
 @ManagedBean
 @RequestScoped
 public class jsfGrupoProduto {
@@ -29,7 +26,8 @@ public class jsfGrupoProduto {
     private UUID id;
     private String codigo;
     private String nome;
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_vendaprodutosweb_war_1.0-SNAPSHOTPU");
+    
+    CrudGrupoProduto crudeGrupo = new CrudGrupoProduto();
     
     public jsfGrupoProduto(){        
     }
@@ -50,7 +48,7 @@ public class jsfGrupoProduto {
         this.codigo = codigo;
     }
     
-    public String getBome() {
+    public String getNome() {
         return nome;
     }
 
