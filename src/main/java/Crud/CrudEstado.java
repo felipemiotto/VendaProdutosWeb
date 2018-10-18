@@ -5,6 +5,7 @@
  */
 package Crud;
 
+import Model.Estado;
 import Model.Pais;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -13,15 +14,16 @@ import javax.persistence.Persistence;
  *
  * @author felip
  */
-public class CrudPais extends AbstractCrud<Pais>{
+public class CrudEstado extends AbstractCrud<Estado>{
 
     private EntityManager em;
 
-    public CrudPais() {
-        super(Pais.class);
+    public CrudEstado() {
+        super(Estado.class);
     }
+    
     @Override
-    protected EntityManager getEntityManager() {
+    protected EntityManager getEntityManager() {       
         if (em == null) {
             em = Persistence.createEntityManagerFactory(EMNames.EMN1, EMNames.getEMN1Props()).createEntityManager();
         }

@@ -9,18 +9,19 @@
         <ui:define name="content">
             <h1>Cadastrar Pais</h1>
             <h:form>
-                <p:messages id="messages" showDetail="true" closable="true">
-                    <p:autoUpdate />
-                </p:messages>
-                Nome:
+
+                Nome: <br></br>
                 <p:inputText value="#{jsfPais.nome}"/>
                 <br></br>
-                Código:
+                Código: <br></br>
                 <p:inputText value="#{jsfPais.codigo}"/>
                 <br></br>
                 <br></br>
                 <p:commandButton value="Salvar Registro" action="#{jsfPais.inserir()}"  ajax="false"/> 
             </h:form>
+            <p:messages id="messages" showDetail="true" closable="true">
+                <p:autoUpdate />
+            </p:messages>
         </ui:define>
     </ui:composition>
 

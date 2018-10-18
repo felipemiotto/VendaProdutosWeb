@@ -39,7 +39,7 @@ public class Pais implements Serializable {
     @OneToMany(mappedBy = "paisId")
     private Collection<Estado> estadoCollection;
     
-       private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull

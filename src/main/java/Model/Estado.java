@@ -7,6 +7,7 @@ package Model;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.UUID;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -37,13 +38,14 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Estado.findBySigla", query = "SELECT e FROM Estado e WHERE e.sigla = :sigla")})
 public class Estado implements Serializable {
 
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
     @Lob
     @Column(name = "id", columnDefinition = "uuid")
-    private String id;
+    private UUID id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
@@ -63,21 +65,23 @@ public class Estado implements Serializable {
     public Estado() {
     }
 
-    public Estado(String id) {
+    public Estado(UUID id) {
         this.id = id;
     }
 
-    public Estado(String id, String nome, String sigla) {
+    public Estado(UUID id, String nome, String sigla, Collection<Cidade> cidadeCollection, Pais paisId) {
         this.id = id;
         this.nome = nome;
         this.sigla = sigla;
+        this.cidadeCollection = cidadeCollection;
+        this.paisId = paisId;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -97,6 +101,16 @@ public class Estado implements Serializable {
         this.sigla = sigla;
     }
 
+    public Pais getPaisId() {
+        return paisId;
+    }
+
+    public void setPaisId(Pais paisId) {
+        this.paisId = paisId;
+    }
+
+   
+
     @XmlTransient
     public Collection<Cidade> getCidadeCollection() {
         return cidadeCollection;
@@ -104,14 +118,6 @@ public class Estado implements Serializable {
 
     public void setCidadeCollection(Collection<Cidade> cidadeCollection) {
         this.cidadeCollection = cidadeCollection;
-    }
-
-    public Pais getPaisId() {
-        return paisId;
-    }
-
-    public void setPaisId(Pais paisId) {
-        this.paisId = paisId;
     }
 
     @Override

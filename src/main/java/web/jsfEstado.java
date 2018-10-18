@@ -5,8 +5,9 @@
  */
 package web;
 
+import Crud.CrudEstado;
 import Crud.CrudPais;
-import Model.Documento;
+import Model.Estado;
 import Model.Pais;
 import Utilitarios.Util;
 import java.util.List;
@@ -15,38 +16,41 @@ import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 /**
  *
  * @author felip
  */
-@Named(value = "jsfPais")
+@Named(value = "jsfEstado")
 @ManagedBean
-@RequestScoped
-public class jsfPais {
+@Dependent
+public class jsfEstado {
 
     private UUID id;
-    private String codigo;
     private String nome;
-    CrudPais crudPais = new CrudPais();
+    private String sigla;
+    private Pais paisId;
+    
+    CrudEstado crudEstado = new CrudEstado();
 
     
     public String inserir() {
-        Pais pais = new Pais();
+        Estado estado = new Estado();
         this.setId(Util.geraId());
-        pais.setId(id);
-        pais.setNome(nome);
-        pais.setCodigo(codigo);
+        estado.setId(id);
+        estado.setNome(nome);
+        estado.setSigla(sigla);
+        estado.setPaisId(paisId);
 
-        Exception insert = new CrudPais().persist(pais);
+        Exception insert = new CrudEstado().persist(estado);
 
         if (insert == null) {
             
-            this.setCodigo("");
             this.setNome("");
-              
+            this.setPaisId(null);
+            this.setSigla("");
+            
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!!", "Registro adicionado com sucesso");
             FacesContext.getCurrentInstance().addMessage(null, message);
 
@@ -61,10 +65,12 @@ public class jsfPais {
         return "/operacoes/pais/adicionar.xhtml";
     }
     
-    public List<Pais> listaTodos(){
-        List<Pais> lst;
-        lst = crudPais.getAll();
+    public List<Estado> listaTodos(){
+        List<Estado> lst;
+        lst = crudEstado.getAll();
         return lst;
+    }
+    public jsfEstado() {
     }
 
     public UUID getId() {
@@ -83,24 +89,30 @@ public class jsfPais {
         this.nome = nome;
     }
 
-    public CrudPais getCrudPais() {
-        return crudPais;
+    public CrudEstado getCrudEstado() {
+        return crudEstado;
     }
 
-    public void setCrudPais(CrudPais crudPais) {
-        this.crudPais = crudPais;
+    public void setCrudEstado(CrudEstado crudEstado) {
+        this.crudEstado = crudEstado;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public String getSigla() {
+        return sigla;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
+    }
+
+    public Pais getPaisId() {
+        return paisId;
+    }
+
+    public void setPaisId(Pais paisId) {
+        this.paisId = paisId;
     }
     
-        
-    public jsfPais() {
-    }
+    
     
 }
