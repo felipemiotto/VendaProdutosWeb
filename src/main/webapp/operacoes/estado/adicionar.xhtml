@@ -17,15 +17,15 @@
                 <p:inputText value="#{jsfEstado.sigla}"/>
                 <br></br>
                 País:<br></br>
-                <p:selectOneMenu value="#{1}" required="true" requiredMessage="Selecione uma opção no menu teste 1    ">
+
+                <p:selectOneMenu value="#{jsfEstado.paisId.id}" required="true" requiredMessage="Selecione uma opção no menu teste 1    ">
                     <f:selectItem  itemLabel="=== selecione um ==="/>
-                    <f:selectItem  itemLabel="=== selecione um ==="/>
-                    <f:selectItem  itemLabel="=== selecione um ==="/>
+                    <f:selectItems value="#{jsfPais.all}" var="pais" itemValue="#{pais.id}" itemLabel="#{pais.nome}"/>
                 </p:selectOneMenu>
 
                 <br></br>                
                 <br></br>
-                <p:commandButton value="Salvar Registro" action="#{jsfPais.inserir()}"  ajax="false"/> 
+                <p:commandButton value="Salvar Registro" action="#{jsfEstado.inserir()}"  ajax="false"/> 
             </h:form>
             <p:messages id="messages" showDetail="true" closable="true">
                 <p:autoUpdate />

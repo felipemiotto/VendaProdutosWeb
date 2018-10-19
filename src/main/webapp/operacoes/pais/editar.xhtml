@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="../layout_operacoes.xhtml">
+        <ui:define name="content">
+            <h1>Modificar Pais</h1>
+            <h:form>
+                <p:messages id="messages" showDetail="true" closable="true">
+                    <p:autoUpdate />
+                </p:messages>
+                
+                ID:<br></br>
+                <p:outputLabel value="#{jsfPais.id}"  />
+                <h:inputHidden value="#{jsfPais.id}"  />
+                <br></br>
+                
+                Codigo:<br></br>
+                <p:inputText value="#{jsfPais.codigo}" />
+                <br></br>
+                
+                Nome:<br></br>
+                <p:inputText value="#{jsfPais.nome}" />
+                <br></br>
+
+                <p:commandButton value="Salvar Registro" action="#{jsfPais.merge()}"  ajax="false"/> 
+                
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

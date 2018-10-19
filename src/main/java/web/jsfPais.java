@@ -32,6 +32,52 @@ public class jsfPais {
     private String nome;
     CrudPais crudPais = new CrudPais();
 
+
+    public String merge() {
+
+        Pais p;
+        p = new CrudPais().find(this.id);        
+        p.setId(id);
+        p.setNome(nome);
+        p.setCodigo(codigo);
+        
+        Exception e = new CrudPais().merge(p);
+  
+        if (e == null) {
+            this.setId(id);
+            this.setCodigo("");
+            this.setNome("");
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!!", "Registro alterado com sucesso");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+
+        } else {
+            String msg = e.getMessage();
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Informe o administrador do erro: " + msg);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+        return "/operacoes/index.xhtml";
+    }   
+    
+    public String update(Pais pais) {
+        this.id = pais.getId();
+        this.codigo = pais.getCodigo();
+        this.nome = pais.getNome();
+        return "editar.xhtml";
+    }
+   
+    
+    public void remove(Pais pais) {
+        Exception e =new CrudPais().remove(pais);
+         if (e == null) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!!", "Registro excluido com sucesso");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+
+        } else {
+            String msg = e.getMessage();
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Informe o administrador do erro: " + msg);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+    }
     
     public String inserir() {
         Pais pais = new Pais();
@@ -67,6 +113,14 @@ public class jsfPais {
         return lst;
     }
 
+    /**
+     *
+     * @return
+     */
+    public List<Pais> getAll() {
+        return new CrudPais().getAll();
+    }
+    
     public UUID getId() {
         return id;
     }
