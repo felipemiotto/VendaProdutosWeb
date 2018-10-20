@@ -18,7 +18,7 @@
                 <br></br>
                 País:<br></br>
 
-                <p:selectOneMenu value="#{jsfEstado.paisId.id}" required="true" requiredMessage="Selecione uma opção no menu teste 1    ">
+                <p:selectOneMenu value="#{jsfPais.idAux}" required="true" requiredMessage="Selecione uma opção no menu teste 1    ">
                     <f:selectItem  itemLabel="=== selecione um ==="/>
                     <f:selectItems value="#{jsfPais.all}" var="pais" itemValue="#{pais.id}" itemLabel="#{pais.nome}"/>
                 </p:selectOneMenu>

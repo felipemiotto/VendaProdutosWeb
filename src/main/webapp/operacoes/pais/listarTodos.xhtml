@@ -6,11 +6,12 @@
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="../layout_operacoes.xhtml">
         <ui:define name="content">
-            <h1>Listar Todos Países</h1>
             <h:form>
                 <p:messages id="messages" showDetail="true" closable="true">
                     <p:autoUpdate />
                 </p:messages>
+                            <h1>Listar Todos Países</h1>
+
                 <h:dataTable value="#{jsfPais.listaTodos()}" var="pais">
                     <h:column>
                         <h:outputText value="#{pais.codigo}" />

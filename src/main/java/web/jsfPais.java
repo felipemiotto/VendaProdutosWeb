@@ -8,6 +8,7 @@ package web;
 import Crud.CrudPais;
 import Model.Documento;
 import Model.Pais;
+import Utilitarios.PostgreUuidConverter;
 import Utilitarios.Util;
 import java.util.List;
 import java.util.UUID;
@@ -30,17 +31,28 @@ public class jsfPais {
     private UUID id;
     private String codigo;
     private String nome;
+    private String idAux;
+
     CrudPais crudPais = new CrudPais();
+    PostgreUuidConverter converter=new PostgreUuidConverter();
 
 
     public String merge() {
 
-        Pais p;
-        p = new CrudPais().find(this.id);        
-        p.setId(id);
-        p.setNome(nome);
-        p.setCodigo(codigo);
+        Model.Pais p = null;
+        List<Model.Pais> lista;
+        lista = new CrudPais().getAll();
         
+        for(int i = 0; i < lista.size(); i++){
+            if(lista.get(i).getId().toString().equals(idAux)){
+                p = new CrudPais().find(lista.get(i).getId());
+                p.setId(lista.get(i).getId());
+                p.setNome(nome);
+                p.setCodigo(codigo);
+                continue;
+            }
+        }        
+        /**/
         Exception e = new CrudPais().merge(p);
   
         if (e == null) {
@@ -55,16 +67,15 @@ public class jsfPais {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Informe o administrador do erro: " + msg);
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
-        return "/operacoes/index.xhtml";
+        return "/operacoes/pais/listarTodos.xhtml";
     }   
-    
     public String update(Pais pais) {
         this.id = pais.getId();
+        this.idAux = pais.getId().toString();
         this.codigo = pais.getCodigo();
         this.nome = pais.getNome();
         return "editar.xhtml";
     }
-   
     
     public void remove(Pais pais) {
         Exception e =new CrudPais().remove(pais);
@@ -82,14 +93,15 @@ public class jsfPais {
     public String inserir() {
         Pais pais = new Pais();
         this.setId(Util.geraId());
-        pais.setId(id);
+        pais.setId(converter.convertToEntityAttribute(id));
         pais.setNome(nome);
         pais.setCodigo(codigo);
 
         Exception insert = new CrudPais().persist(pais);
-
+        
+        //null = nao retornou erro
         if (insert == null) {
-            
+            this.setId(null);
             this.setCodigo("");
             this.setNome("");
               
@@ -120,6 +132,24 @@ public class jsfPais {
     public List<Pais> getAll() {
         return new CrudPais().getAll();
     }
+
+    public String getIdAux() {
+        return idAux;
+    }
+
+    public void setIdAux(String idAux) {
+        this.idAux = idAux;
+    }
+
+    public PostgreUuidConverter getConverter() {
+        return converter;
+    }
+
+    public void setConverter(PostgreUuidConverter converter) {
+        this.converter = converter;
+    }
+    
+    
     
     public UUID getId() {
         return id;
