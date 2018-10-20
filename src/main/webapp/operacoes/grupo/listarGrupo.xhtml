@@ -11,12 +11,12 @@
                 <p:messages id="messages" showDetail="true" closable="true">
                     <p:autoUpdate />
                 </p:messages>
-                <h:dataTable value="#{jsfGrupoProduto.listaTodos()}" var="pais">
+                <h:dataTable value="#{jsfGrupoProduto.listaTodos()}" var="grupo">
                     <h:column>
-                        <h:outputText value="#{pais.codigo}" />
+                        <h:outputText value="#{grupo.codigo}" />
                     </h:column>
                     <h:column>
-                        <h:outputText value="#{pais.nome}" />
+                        <h:outputText value="#{grupo.nome}" />
                     </h:column>
                     <h:column>
                         <p:commandButton value="remover" action="#{jsfGrupoProduto.remove(grupo)}" onclick="return confirm('Confirma exclusao?');" ajax="false"/> 

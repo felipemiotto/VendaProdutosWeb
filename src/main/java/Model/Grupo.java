@@ -38,6 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Grupo.findAll", query = "SELECT g FROM Grupo g")
     , @NamedQuery(name = "Grupo.findByCodigo", query = "SELECT g FROM Grupo g WHERE g.codigo = :codigo")
+        , @NamedQuery(name = "Grupo.findByCodigo_nome", query = "SELECT g FROM Grupo g WHERE g.codigo = :codigo and g.nome = :nome")
     , @NamedQuery(name = "Grupo.findByNome", query = "SELECT g FROM Grupo g WHERE g.nome = :nome")})
 public class Grupo implements Serializable {
 

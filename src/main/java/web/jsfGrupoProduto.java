@@ -7,7 +7,6 @@ package web;
 
 import Crud.CrudGrupoProduto;
 import Model.Grupo;
-import Model.Pais;
 import java.util.List;
 import java.util.UUID;
 import javax.inject.Named;
@@ -26,8 +25,10 @@ import javax.faces.context.FacesContext;
 public class jsfGrupoProduto {
     
     private UUID id;
+
     private String codigo;
     private String nome;
+    private String idAux;
     
     CrudGrupoProduto crudeGrupo = new CrudGrupoProduto();
     
@@ -57,9 +58,15 @@ public class jsfGrupoProduto {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
-    
 
+    public String getIdAux() {
+        return idAux;
+    }
+
+    public void setIdAux(String idAux) {
+        this.idAux = idAux;
+    }
+    
     public String persist() {
         Model.Grupo grupo;
         grupo = new Grupo();
@@ -117,16 +124,25 @@ public class jsfGrupoProduto {
     
     public String update(Model.Grupo grupo) {
         this.id = grupo.getId();
+        this.idAux = grupo.getId().toString();
         this.nome = grupo.getNome();
         this.codigo = grupo.getCodigo();
         return "editar.xhtml";
     }
 
     public String merge() {
-        Model.Grupo grupo;
-        grupo = new CrudGrupoProduto().find(this.id);
-        grupo.setCodigo(codigo);
-        grupo.setNome(nome);
+        Model.Grupo grupo = null;
+        List<Model.Grupo> g1;
+        g1 = new CrudGrupoProduto().getAll();
+        for(int i = 0; i < g1.size(); i++){
+            if(g1.get(i).getId().toString().equals(idAux)){
+                grupo = new CrudGrupoProduto().find(g1.get(i).getId());
+                grupo.setId(g1.get(i).getId());
+                grupo.setNome(nome);
+                grupo.setCodigo(codigo);
+                continue;
+            }
+        }
         Exception e = new CrudGrupoProduto().merge(grupo);
         if (e == null) {
             this.setId(null);
