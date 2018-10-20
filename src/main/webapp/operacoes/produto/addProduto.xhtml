@@ -12,23 +12,30 @@
                 <p:messages id="messages" showDetail="true" closable="true">
                     <p:autoUpdate />
                 </p:messages>
-                Descricao
+                             
+                Descricao: <br></br>
                 <p:inputText value="#{jsfProduto.descricao}"/>
                 <br></br>
-                Custo:
+                Custo: <br></br>
                 <p:inputText value="#{jsfProduto.custo}"/>                
                 <br></br>
-                Peso:
+                Peso: <br></br>
                 <p:inputText value="#{jsfProduto.peso}"/>                
                 <br></br>
-                Preço
+                Preço: <br></br>
                 <p:inputText value="#{jsfProduto.preco}"/>                
                 <br></br>
-                Unidade:
+                Unidade:<br></br>
                 <p:inputText value="#{jsfProduto.unidade}"/>                
                 <br></br>
                 <br></br>
-                <p:commandButton value="Salvar Registro" action="#{jsfGrupoProduto.persist()}"  ajax="false"/> 
+                
+                <p:selectOneMenu value="#{jsfGrupoProduto.idAux}" required="true" requiredMessage="Selecione uma opção no menu    ">
+                    <f:selectItem  itemLabel="=== selecione um ==="/>
+                    <f:selectItems value="#{jsfGrupoProduto.all}" var="grupo" itemValue="#{grupo.id}" itemLabel="#{grupo.nome}"/>
+                </p:selectOneMenu>
+                
+                <p:commandButton value="Salvar Registro" action="#{jsfProduto.persist()}"  ajax="false"/> 
             </h:form>
         </ui:define>
     </ui:composition>-->

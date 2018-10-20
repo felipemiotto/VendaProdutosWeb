@@ -16,6 +16,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -23,6 +24,7 @@ import javax.persistence.Persistence;
  *
  * @author alexj
  */
+@Named(value = "jsfProduto")
 @ManagedBean
 @RequestScoped
 public class JsfProduto {
@@ -33,10 +35,7 @@ public class JsfProduto {
     private BigDecimal peso;
     private BigDecimal preco;
     private BigDecimal custo;
-    private Grupo idGrupo;
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_vendaprodutosweb_war_1.0-SNAPSHOTPU");
-    
-    
+    private Grupo idGrupo;    
   
     public JsfProduto(){        
     }
@@ -97,13 +96,6 @@ public class JsfProduto {
         this.idGrupo = idGrupo;
     }
 
-    public EntityManagerFactory getEmf() {
-        return emf;
-    }
-
-    public void setEmf(EntityManagerFactory emf) {
-        this.emf = emf;
-    }
     public String persist() {
         Model.Produto produto;
         produto = new Produto();
