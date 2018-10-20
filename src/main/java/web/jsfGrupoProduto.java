@@ -7,6 +7,8 @@ package web;
 
 import Crud.CrudGrupoProduto;
 import Model.Grupo;
+import Model.Pais;
+import java.util.List;
 import java.util.UUID;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -85,6 +87,12 @@ public class jsfGrupoProduto {
      public java.util.List<Model.Grupo> getAll() {
         return new CrudGrupoProduto().getAll();
     }
+     
+     public List<Grupo> listaTodos(){
+        List<Grupo> lst;
+        lst = crudeGrupo.getAll();
+        return lst;
+    }
 
     public java.util.List<Model.Grupo> getSelect() {
         if (this.nome != null && !this.nome.equals("")) {
@@ -111,7 +119,7 @@ public class jsfGrupoProduto {
         this.id = grupo.getId();
         this.nome = grupo.getNome();
         this.codigo = grupo.getCodigo();
-        return "";
+        return "editar.xhtml";
     }
 
     public String merge() {
