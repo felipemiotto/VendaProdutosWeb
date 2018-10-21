@@ -30,12 +30,12 @@
                 <br></br>
                 <br></br>
                 
-                <p:selectOneMenu value="#{jsfGrupoProduto.idAux}" required="true" requiredMessage="Selecione uma opção no menu    ">
+                <p:selectOneMenu value="#{jsfProduto.idGpProduto}" required="true" requiredMessage="Selecione uma opção no menu    ">
                     <f:selectItem  itemLabel="=== selecione um ==="/>
                     <f:selectItems value="#{jsfGrupoProduto.all}" var="grupo" itemValue="#{grupo.id}" itemLabel="#{grupo.nome}"/>
                 </p:selectOneMenu>
                 
-                <p:commandButton value="Salvar Registro" action="#{jsfProduto.persist()}"  ajax="false"/> 
+                <p:commandButton value="Salvar Registro" action="#{jsfProduto.persist}"  ajax="false"/> 
             </h:form>
         </ui:define>
     </ui:composition>-->

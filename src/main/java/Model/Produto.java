@@ -5,8 +5,10 @@
  */
 package Model;
 
+import Crud.CrudGrupoProduto;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -145,8 +147,16 @@ public class Produto implements Serializable {
         return grupoId;
     }
 
-    public void setGrupoId(Grupo grupoId) {
-        this.grupoId = grupoId;
+    public void setGrupoId(String grupoId) {
+        List<Model.Grupo> g1;
+        g1 = new CrudGrupoProduto().getAll();
+        for(int i = 0; i < g1.size(); i++){
+            if(g1.get(i).getId().toString().equals(grupoId)){
+                 this.grupoId = g1.get(i);
+                continue;
+            }
+        }
+       
     }
 
     @Override

@@ -35,9 +35,18 @@ public class JsfProduto {
     private BigDecimal peso;
     private BigDecimal preco;
     private BigDecimal custo;
-    private Grupo idGrupo;    
+    private Grupo idGrupo;   
+    private String idGpProduto;
   
     public JsfProduto(){        
+    }
+
+    public String getIdGpProduto() {
+        return idGpProduto;
+    }
+
+    public void setIdGpProduto(String idGpProduto) {
+        this.idGpProduto = idGpProduto;
     }
 
     public UUID getId() {
@@ -101,12 +110,12 @@ public class JsfProduto {
         produto = new Produto();
         produto.setCusto(custo);
         produto.setDescricao(descricao);
-        produto.setGrupoId(idGrupo);
+        produto.setGrupoId(idGpProduto);
         produto.setId(Utilitarios.Util.geraId());
         produto.setPeso(peso);
         produto.setPreco(preco);
         produto.setUnidade(unidade);
-        produto.setId(id);
+        //produto.setId(id);
         
         Exception insert = new Crud.CrudProduto().persist(produto);
         if(insert == null){
