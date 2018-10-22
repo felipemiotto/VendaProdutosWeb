@@ -18,63 +18,67 @@
 
             <h:form>
                 <p:menubar>
-                    <p:submenu label="Cadastros" icon="ui-icon-document">
-                        <p:submenu label="Cliente" icon="ui-icon-contact" rendered="true">
-                            <p:menuitem value="Buscar" icon="ui-icon-search" url="/faces/operacoes/cliente/listselect.xhtml"/>
-                            <p:menuitem value="Exibir todos"  icon="ui-icon-document-b"   url="/faces/operacoes/cliente/listarTodos.xhtml" />
-                            <p:menuitem value="Cadastrar Cliente" icon="ui-icon-newwin" url="/faces/operacoes/cliente/adicionar.xhtml" />
-                        </p:submenu>
-
-                        <p:submenu label="Documento" icon="ui-icon-contact" rendered="true">
-                            <p:menuitem value="Buscar" icon="ui-icon-search" url="/faces/operacoes/documento/listselect.xhtml"/>
-                            <p:menuitem value="Exibir todos"  icon="ui-icon-document-b"   url="/faces/operacoes/documento/listarTodos.xhtml" />
-                            <p:menuitem value="Cadastrar Documento" icon="ui-icon-newwin" url="/faces/operacoes/documento/adicionar.xhtml" />
-                        </p:submenu>
-
-                        <p:submenu label="Cep" icon="ui-icon-contact" rendered="true">
-                            <p:menuitem value="Buscar" icon="ui-icon-search" url="/faces/operacoes/cep/listselect.xhtml"/>
-                            <p:menuitem value="Exibir todos"  icon="ui-icon-document-b"   url="/faces/operacoes/crudteste/listall.xhtml" />
-                            <p:menuitem value="Cadastrar Cep" icon="ui-icon-newwin" url="/faces/operacoes/cep/add.xhtml" />
-                        </p:submenu>
-
-                        <p:submenu label="Cidade" icon="ui-icon-contact" rendered="true">
-                            <p:menuitem value="Buscar" icon="ui-icon-search" url="/faces/operacoes/venda/listselect.xhtml"/>
-                            <p:menuitem value="Exibir todos"  icon="ui-icon-document-b"   url="/faces/operacoes/crudteste/listall.xhtml" />
-                            <p:menuitem value="Cadastrar Cidade" icon="ui-icon-newwin" url="/faces/operacoes/cidade/adicionar.xhtml" />
-                        </p:submenu>
-
-                        <p:submenu label="Estado" icon="ui-icon-contact" rendered="true">
-                            <p:menuitem value="Buscar" icon="ui-icon-search" url="/faces/operacoes/venda/listselect.xhtml"/>
-                            <p:menuitem value="Exibir todos"  icon="ui-icon-document-b"   url="/faces/operacoes/crudteste/listall.xhtml" />
-                            <p:menuitem value="Cadastrar Estados" icon="ui-icon-newwin" url="/faces/operacoes/estado/adicionar.xhtml" />
-                        </p:submenu>
-
-                        <p:submenu label="Pais" icon="ui-icon-contact" rendered="true">
-                            <p:menuitem value="Buscar" icon="ui-icon-search" url="/faces/operacoes/pais/adicionar.xhtml"/>
-                            <p:menuitem value="Exibir todos"  icon="ui-icon-document-b"   url="/faces/operacoes/pais/listarTodos.xhtml" />
-                            <p:menuitem value="Cadastrar Pais" icon="ui-icon-newwin" url="/faces/operacoes/pais/adicionar.xhtml" />
-
-                        </p:submenu>
-                        
-                        <p:submenu label="Grupo" icon="ui-icon-contact" rendered="true">
-                            <p:menuitem value="Buscar" icon="ui-icon-search" url="/faces/operacoes/grupo/listselect.xhtml"/>
-                            <p:menuitem value="Exibir todos"  icon="ui-icon-document-b"   url="/faces/operacoes/grupo/listarGrupo.xhtml" />
-                            <p:menuitem value="Cadastrar Grupo" icon="ui-icon-newwin" url="/faces/operacoes/grupo/addGrupo.xhtml" />
-                        </p:submenu>
-                        
-                        <p:submenu label="Produto" icon="ui-icon-contact" rendered="true">
-                            <p:menuitem value="Buscar" icon="ui-icon-search" url="/faces/operacoes/produto/listselect.xhtml"/>
-                            <p:menuitem value="Exibir todos"  icon="ui-icon-document-b"   url="/faces/operacoes/produto/listarGrupo.xhtml" />
-                            <p:menuitem value="Cadastrar Produto" icon="ui-icon-newwin" url="/faces/operacoes/produto/addProduto.xhtml" />
-                        </p:submenu>
-
-                        <p:separator />
-                    </p:submenu>
                     <p:submenu label="Lancamentos de Vendas" icon="ui-icon-document"> 
                         <p:submenu label="Vender" icon="ui-icon-contact" rendered="true">
                             <p:menuitem value="Exibir todas as vendas"  icon="ui-icon-document-b"   url="/faces/operacoes/vender/listall.xhtml" />
                             <p:menuitem value="Efetuar venda" icon="ui-icon-newwin" url="/faces/operacoes/vender/vender.xhtml" />
                         </p:submenu>
+                    </p:submenu>
+                    <p:submenu label="Cadastros" icon="ui-icon-document" rendered="true">
+                        <p:menuitem value="Cep" icon="ui-icon-newwin" url="/faces/operacoes/cep/add.xhtml" />
+                        <p:menuitem value="Cidade" icon="ui-icon-newwin" url="/faces/operacoes/cidade/adicionarCidade.xhtml" />
+                        <p:menuitem value="Cliente" icon="ui-icon-newwin" url="/faces/operacoes/cliente/adicionar.xhtml" />                                                        
+                        <p:menuitem value="Documento" icon="ui-icon-newwin" url="/faces/operacoes/documento/adicionar.xhtml" />
+                        <p:menuitem value="Estados" icon="ui-icon-newwin" url="/faces/operacoes/estado/adicionar.xhtml" />
+                        <p:menuitem value="Grupo" icon="ui-icon-newwin" url="/faces/operacoes/grupo/addGrupo.xhtml" />
+                        <p:menuitem value="Pais" icon="ui-icon-newwin" url="/faces/operacoes/pais/adicionar.xhtml" />
+                        <p:menuitem value="Produto" icon="ui-icon-newwin" url="/faces/operacoes/produto/addProduto.xhtml" />
+                    </p:submenu>
+                    <p:submenu label="Listar" icon="ui-icon-document" rendered="true">
+                        <p:menuitem value="Cadastros"  icon="ui-icon-document-b"   url="/faces/operacoes/cliente/listarTodos.xhtml" />
+                        <p:menuitem value="CEPs"  icon="ui-icon-document-b"   url="/faces/operacoes/crudteste/listall.xhtml" />                            
+                        <p:menuitem value="Cidades"  icon="ui-icon-document-b"   url="/faces/operacoes/cidade/listarTodos.xhtml" />
+                        <p:menuitem value="Documentos"  icon="ui-icon-document-b"   url="/faces/operacoes/documento/listarTodos.xhtml" />
+                        <p:menuitem value="Estados"  icon="ui-icon-document-b"   url="/faces/operacoes/estado/listarTodos.xhtml" />
+                        <p:menuitem value="Grupos"  icon="ui-icon-document-b"   url="/faces/operacoes/grupo/listarGrupo.xhtml" />
+                        <p:menuitem value="Países"  icon="ui-icon-document-b"   url="/faces/operacoes/pais/listarTodos.xhtml" />
+                        <p:menuitem value="Produtos"  icon="ui-icon-document-b"   url="/faces/operacoes/produto/listarGrupo.xhtml" />
+                    </p:submenu>
+                    <p:submenu label="Buscar?" icon="ui-icon-document">
+                        <p:submenu label="Cliente" icon="ui-icon-contact" rendered="true">
+                            <p:menuitem value="Buscar" icon="ui-icon-search" url="/faces/operacoes/cliente/listselect.xhtml"/>
+                        </p:submenu>
+
+                        <p:submenu label="Documento" icon="ui-icon-contact" rendered="true">
+                            <p:menuitem value="Buscar" icon="ui-icon-search" url="/faces/operacoes/documento/listselect.xhtml"/>
+                        </p:submenu>
+
+                        <p:submenu label="Cep" icon="ui-icon-contact" rendered="true">
+                            <p:menuitem value="Buscar" icon="ui-icon-search" url="/faces/operacoes/cep/listselect.xhtml"/>
+                        </p:submenu>
+
+                        <p:submenu label="Cidade" icon="ui-icon-contact" rendered="true">
+                            <p:menuitem value="Buscar" icon="ui-icon-search" url="/faces/operacoes/venda/listselect.xhtml"/>
+                        </p:submenu>
+
+                        <p:submenu label="Estado" icon="ui-icon-contact" rendered="true">
+                            <p:menuitem value="Buscar" icon="ui-icon-search" url="/faces/operacoes/venda/listselect.xhtml"/>
+                        </p:submenu>
+
+                        <p:submenu label="Pais" icon="ui-icon-contact" rendered="true">
+                            <p:menuitem value="Buscar" icon="ui-icon-search" url="/faces/operacoes/pais/adicionar.xhtml"/>
+
+                        </p:submenu>
+                        
+                        <p:submenu label="Grupo" icon="ui-icon-contact" rendered="true">
+                            <p:menuitem value="Buscar" icon="ui-icon-search" url="/faces/operacoes/grupo/listselect.xhtml"/>
+                        </p:submenu>
+                        
+                        <p:submenu label="Produto" icon="ui-icon-contact" rendered="true">
+                            <p:menuitem value="Buscar" icon="ui-icon-search" url="/faces/operacoes/produto/listselect.xhtml"/>
+                        </p:submenu>
+
+                        <p:separator />
                     </p:submenu>
                     <f:facet name="options">
                         <p:inputText style="margin-right:10px" placeholder="Search"/>

@@ -5,8 +5,10 @@
  */
 package Model;
 
+import Crud.CrudEstado;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -88,8 +90,16 @@ public class Cidade implements Serializable {
         return estadoId;
     }
 
-    public void setEstadoId(Estado estadoId) {
-        this.estadoId = estadoId;
+    public void setEstadoId(String estadoId) {
+        
+        List<Model.Estado> listaEstados;
+        listaEstados = new CrudEstado().getAll();
+        for(int i = 0; i < listaEstados.size(); i++){
+            if(listaEstados.get(i).getId().toString().equals(estadoId)){
+                 this.estadoId = listaEstados.get(i);
+                continue;
+            }
+        }
     }
 
     @Override

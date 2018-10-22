@@ -13,15 +13,15 @@
                 <p:messages id="messages" showDetail="true" closable="true">
                     <p:autoUpdate />
                 </p:messages>
-                Codigo:
+                Codigo:<br></br>
                 <p:inputText value="#{jsfTeste.codigo}"  />
 
                 <br></br>
-                Nome:
+                Nome:<br></br>
                 <p:inputText value="#{jsfTeste.nome}" />
                 
                 <br></br>
-                Teste1:
+                Teste1:<br></br>
                 <p:selectOneMenu value="#{jsfTeste.codTeste1}" required="true" requiredMessage="Selecione uma opção no menu teste 1    ">
                     <f:selectItem  itemLabel="=== selecione um ==="/>
                     <f:selectItems value="#{jsfTeste1.all}" var="t1" itemLabel="#{t1.nome}" itemValue="#{t1.codigo}"/>

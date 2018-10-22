@@ -5,11 +5,11 @@
  */
 package web;
 
+import Crud.CrudCidade;
 import Crud.CrudEstado;
-import Crud.CrudPais;
+import Model.Cidade;
 import Model.Estado;
 import Model.Pais;
-import Model.Produto;
 import Utilitarios.PostgreUuidConverter;
 import Utilitarios.Util;
 import java.util.List;
@@ -24,39 +24,34 @@ import javax.faces.context.FacesContext;
  *
  * @author felip
  */
-@Named(value = "jsfEstado")
+@Named(value = "jsdCidade")
 @ManagedBean
 @Dependent
-public class jsfEstado {
-
+public class jsfCidade {
     private UUID id;
     private String nome;
-    private String sigla;
-    private Pais pais;
-    private String paisId;
+    private Estado estado;
+    private String estadoId;
     
-    CrudEstado crudEstado = new CrudEstado();
+    Crud.CrudCidade crudCidade = new CrudCidade();
     PostgreUuidConverter converter=new PostgreUuidConverter();
 
-    
     public String persist() {
                         
+        Model.Cidade cidade;
+        cidade = new Cidade();
         
-        Model.Estado estado;
-        estado = new Estado();
+        this.setId(Util.geraId());
         
-        this.setId(Util.geraId());        
+        cidade.setNome(nome);
+        cidade.setId(id);
+        cidade.setEstadoId(estadoId);
+             
+        Exception insert = new Crud.CrudProduto().persist(cidade);
         
-        estado.setId(converter.convertToEntityAttribute(id));
-        estado.setNome(nome);
-        estado.setSigla(sigla);
-        estado.setPaisId(paisId);
-     
-        Exception insert = new Crud.CrudProduto().persist(estado);
         if(insert == null){
             this.setNome("");
-            this.setIdPais(null);
-            this.setSigla("");
+            this.setEstadoId(null);
             
            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!!", "Registro adicionado com sucesso");
            FacesContext.getCurrentInstance().addMessage(null, message);
@@ -69,10 +64,10 @@ public class jsfEstado {
         }
         
         return "";        
-    }
-
-    public void remove(Estado estado) {
-        Exception e =new CrudEstado().remove(estado);
+    }    
+    
+    public void remove(Cidade cidade) {
+        Exception e =new CrudCidade().remove(cidade);
          if (e == null) {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!!", "Registro excluido com sucesso");
             FacesContext.getCurrentInstance().addMessage(null, message);
@@ -84,13 +79,13 @@ public class jsfEstado {
         }
     }
     
-    public List<Estado> listaTodos(){
-        List<Estado> lst;
-        lst = crudEstado.getAll();
+    public List<Cidade> listaTodos(){
+        List<Cidade> lst;
+        lst = crudCidade.getAll();
         return lst;
     }
-    public jsfEstado() {
-    }
+    
+    public jsfCidade() {}
 
     public UUID getId() {
         return id;
@@ -108,41 +103,38 @@ public class jsfEstado {
         this.nome = nome;
     }
 
-    public CrudEstado getCrudEstado() {
-        return crudEstado;
+    public Estado getEstado() {
+        return estado;
     }
 
-    public void setCrudEstado(CrudEstado crudEstado) {
-        this.crudEstado = crudEstado;
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 
-    public String getSigla() {
-        return sigla;
+    public String getEstadoId() {
+        return estadoId;
     }
 
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
+    public void setEstadoId(String estadoId) {
+        this.estadoId = estadoId;
     }
 
-
-    public Pais getPais() {
-        return pais;
+    public PostgreUuidConverter getConverter() {
+        return converter;
     }
 
-    public void setPais(Pais pais) {
-        this.pais = pais;
-    }
-
-    public String getIdPais() {
-        return paisId;
-    }
-
-    public void setIdPais(String paisId) {
-        this.paisId = paisId;
+    public void setConverter(PostgreUuidConverter converter) {
+        this.converter = converter;
     }
 
 
-    
-    
+    public CrudCidade getCrudCidade() {
+        return crudCidade;
+    }
+
+    public void setCrudCidade(CrudCidade crudCidade) {
+        this.crudCidade = crudCidade;
+    }
+
     
 }

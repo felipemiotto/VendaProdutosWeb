@@ -12,10 +12,10 @@
                 <p:messages id="messages" showDetail="true" closable="true">
                     <p:autoUpdate />
                 </p:messages>
-                Cep:
+                Cep:<br></br>
                 <p:inputText value="#{jsfCep.cep}"/>
                 <br></br>
-                Cidade:
+                Cidade: <br></br>                
                 <p:selectOneMenu value="#{jsfCep.idCidade}" required="true" requiredMessage="Selecione uma Cidade   ">
                     <f:selectItem  itemLabel="=== selecione um ==="/>
                     <f:selectItems value="#{jsfCep.all}" var="t1" itemLabel="#{jsfCep.cep}" itemValue="#{t1.cidadeId}"/>

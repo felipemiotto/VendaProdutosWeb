@@ -5,8 +5,10 @@
  */
 package Model;
 
+import Crud.CrudPais;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -105,11 +107,16 @@ public class Estado implements Serializable {
         return paisId;
     }
 
-    public void setPaisId(Pais paisId) {
-        this.paisId = paisId;
-    }
-
-   
+    public void setPaisId(String paisId) {
+        List<Model.Pais> listaPaises;
+        listaPaises = new CrudPais().getAll();
+        for(int i = 0; i < listaPaises.size(); i++){
+            if(listaPaises.get(i).getId().toString().equals(paisId)){
+                 this.paisId = listaPaises.get(i);
+                continue;
+            }
+        }
+    } 
 
     @XmlTransient
     public Collection<Cidade> getCidadeCollection() {

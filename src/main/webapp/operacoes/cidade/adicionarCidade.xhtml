@@ -7,25 +7,23 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="../layout_operacoes.xhtml">
         <ui:define name="content">
-            <h1>Cadastrar Estado</h1>
+            <h1>Cadastrar Cidade</h1>
             <h:form>
 
                 Nome: <br></br>
-                <p:inputText value="#{jsfEstado.nome}"/>
+                <p:inputText value="#{jsfCidade.nome}"/>
                 <br></br>
-                Sigla: <br></br>
-                <p:inputText value="#{jsfEstado.sigla}"/>
-                <br></br>
-                País:<br></br>
 
-                <p:selectOneMenu value="#{jsfEstado.idPais}" required="true" requiredMessage="Selecione uma opção no menu teste 1    ">
+                Estado:<br></br>
+
+                <p:selectOneMenu value="#{jsfCidade.estadoId}" required="true" requiredMessage="Selecione uma opção no menu teste 1    ">
                     <f:selectItem  itemLabel="Selecione um..."/>
-                    <f:selectItems value="#{jsfPais.all}" var="pais" itemValue="#{pais.id}" itemLabel="#{pais.nome}"/>
+                    <f:selectItems value="#{jsfEstado.listaTodos()}" var="estado" itemValue="#{estado.id}" itemLabel="#{estado.nome}"/>
                 </p:selectOneMenu>
       
                 <br></br>                
                 <br></br>
-                <p:commandButton value="Salvar Registro" action="#{jsfEstado.persist}"  ajax="false"/> 
+                <p:commandButton value="Salvar Registro" action="#{jsfCidade.persist}"  ajax="false"/> 
             </h:form>
             <p:messages id="messages" showDetail="true" closable="true">
                 <p:autoUpdate />

@@ -34,7 +34,8 @@
                     <f:selectItem  itemLabel="=== selecione um ==="/>
                     <f:selectItems value="#{jsfGrupoProduto.all}" var="grupo" itemValue="#{grupo.id}" itemLabel="#{grupo.nome}"/>
                 </p:selectOneMenu>
-                
+                <br></br>
+                <br></br>
                 <p:commandButton value="Salvar Registro" action="#{jsfProduto.persist}"  ajax="false"/> 
             </h:form>
         </ui:define>
