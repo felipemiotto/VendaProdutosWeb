@@ -48,7 +48,7 @@ public class Venda implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Column(name = "id")
+    @Column(name = "id", columnDefinition = "uuid")
     private String id;
     @Basic(optional = false)
     @NotNull
