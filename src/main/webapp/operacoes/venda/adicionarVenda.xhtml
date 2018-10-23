@@ -9,16 +9,38 @@
         <ui:define name="content">
             <h1>Lançar Venda</h1>
             <h:form>
-                Código: <br></br>
-                <p:inputText value="#{jsfPais.nome}"/>
+                <h:outputLabel for="numero" value="Numero: " class=""/>
                 <br></br>
-                Emissão: <br></br>
-                <p:calendar value="#{jsfPais.codigo}" pattern="dd/MM/yyyy"/>
+                <p:inputText id="numero" value="#{jsfVenda.numero}"/>
                 <br></br>
-                Desconto:
+                <h:outputLabel for="emissao" value="Emissão: "/>
                 <br></br>
-                <p:inputNumber value="#{jsfVenda.emissao}" decimalPlaces="6"></p:inputNumber>
+                <p:calendar id="emissao" value="#{jsfVenda.emissao}" pattern="dd/MM/yyyy" timeOnly="false"  />
                 <br></br>
+                <h:outputLabel for="desconto" value="Desconto: "/>
+                <br></br>
+                <p:inputNumber id="Input8" value="#{jsfVenda.desconto}" decimalPlaces="6" readonly="true">  
+                </p:inputNumber>
+                <br></br>
+                <h:outputLabel for="total" value="Total: "/>
+                <br></br>
+                <p:inputNumber id="total" value="#{jsfVenda.total}" decimalPlaces="6" readonly="true">    
+                </p:inputNumber>
+                <br></br>
+                <p:dialog header="Iten Venda" widgetVar="itenDialogo" modal="true">
+                    <p:outputLabel id="produto" value="Produto:"></p:outputLabel>
+                    <br></br>
+                    <p:selectOneMenu value="#{jsfProduto.id}" required="true" requiredMessage="Selecione um Produto">
+                    <f:selectItem  itemLabel="Selecione um Produto"/>
+                    <f:selectItems value="#{jsfProduto.all}" var="produto" itemValue="#{produto.id}" itemLabel="#{produto.descricao}"/>
+                    <h:outputLabel for="quantidade" value="Quantidade: "/>
+                <br></br>
+                <p:inputNumber id="quantidade" value="#{jsfVenda.total}" decimalPlaces="6" readonly="false">    
+                </p:inputNumber>
+                <br></br>
+                </p:selectOneMenu>
+                </p:dialog>		
+                <p:commandButton id="novo" value="Novo" onclick="PF('itenDialogo').show();" type="button" />
                 <p:commandButton value="Salvar Registro" action="#{jsfPais.inserir()}"  ajax="false"/> 
             </h:form>
             <p:messages id="messages" showDetail="true" closable="true">
