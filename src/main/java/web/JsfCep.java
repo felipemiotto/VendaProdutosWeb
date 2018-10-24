@@ -28,6 +28,7 @@ public class JsfCep {
     private UUID id;
     private String cep;
     private Cidade idCidade;
+    private String idCidadeAux;
     
     CrudCep crudCep = new CrudCep();
     
@@ -57,12 +58,22 @@ public class JsfCep {
     public void setIdCidade(Cidade idCidade) {
         this.idCidade = idCidade;
     }
+
+    public String getIdCidadeAux() {
+        return idCidadeAux;
+    }
+
+    public void setIdCidadeAux(String idCidadeAux) {
+        this.idCidadeAux = idCidadeAux;
+    }
+    
+    
     
     public String persist() {
         Model.Cep Cep;
         Cep = new Cep();
         Cep.setCep(cep);
-        Cep.setCidadeId(idCidade);
+        Cep.setCidadeId(idCidadeAux);
         Cep.setId(Utilitarios.Util.geraId());
         Exception insert = new Crud.CrudCep().persist(Cep);
         if(insert == null){
@@ -118,7 +129,7 @@ public class JsfCep {
         Model.Cep Cep;
         Cep = new CrudCep().find(this.id);
         Cep.setCep(cep);
-        Cep.setCidadeId(idCidade);
+        Cep.setCidadeId(idCidadeAux);
         Exception e = new CrudCep().merge(Cep);
         if (e == null) {
             this.setId(null);

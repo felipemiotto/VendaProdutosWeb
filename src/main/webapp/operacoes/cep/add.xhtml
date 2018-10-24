@@ -15,14 +15,16 @@
                 Cep:<br></br>
                 <p:inputText value="#{jsfCep.cep}"/>
                 <br></br>
-                Cidade: <br></br>                
-                <p:selectOneMenu value="#{jsfCep.idCidade}" required="true" requiredMessage="Selecione uma Cidade   ">
-                    <f:selectItem  itemLabel="=== selecione um ==="/>
-                    <f:selectItems value="#{jsfCep.all}" var="t1" itemLabel="#{jsfCep.cep}" itemValue="#{t1.cidadeId}"/>
+                Cidade:<br></br>
+                
+                <p:selectOneMenu value="#{jsfCep.idCidadeAux}" required="true" requiredMessage="Selecione uma opção no menu teste 1    ">
+                    <f:selectItem  itemLabel="Selecione um..."/>
+                    <f:selectItems value="#{jsfCidade.listaTodos()}" var="cidade" itemValue="#{cidade.id}" itemLabel="#{cidade.nome}"/>
                 </p:selectOneMenu>
+      
+                <br></br>                
                 <br></br>
-                <br></br>
-                <p:commandButton value="Salvar Registro" action="#{jsfCep.persist()}"  ajax="false"/> 
+                <p:commandButton value="Salvar Registro" action="#{jsfCep.persist}"  ajax="false"/> 
             </h:form>
         </ui:define>
     </ui:composition>

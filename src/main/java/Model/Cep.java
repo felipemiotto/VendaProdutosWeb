@@ -5,7 +5,10 @@
  */
 package Model;
 
+import Crud.CrudCidade;
+import Crud.CrudEstado;
 import java.io.Serializable;
+import java.util.List;
 import java.util.UUID;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -57,8 +60,15 @@ public class Cep implements Serializable {
         return cidadeId;
     }
 
-    public void setCidadeId(Cidade cidadeId) {
-        this.cidadeId = cidadeId;
+    public void setCidadeId(String cidadeId) {
+        List<Model.Cidade> listaCidade;
+        listaCidade = new CrudCidade().getAll();
+        for(int i = 0; i < listaCidade.size(); i++){
+            if(listaCidade.get(i).getId().toString().equals(cidadeId)){
+                 this.cidadeId = listaCidade.get(i);
+                continue;
+            }
+        }
     }
 
     public Cep() {

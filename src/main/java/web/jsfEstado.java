@@ -37,7 +37,6 @@ public class jsfEstado {
     
     CrudEstado crudEstado = new CrudEstado();
     PostgreUuidConverter converter=new PostgreUuidConverter();
-
     
     public String persist() {
                         
@@ -89,8 +88,18 @@ public class jsfEstado {
         lst = crudEstado.getAll();
         return lst;
     }
+    
     public jsfEstado() {
     }
+    
+    public String getPaisId() {
+        return paisId;
+    }
+
+    public void setPaisId(String paisId) {
+        this.paisId = paisId;
+    }
+
 
     public UUID getId() {
         return id;
