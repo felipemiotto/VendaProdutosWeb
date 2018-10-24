@@ -1,8 +1,8 @@
 services:
 - postgresql
 before_script:
- - psql -c 'create database vedasprodutoweb;' -U postgres
- - psql -U postgres -d teste -f src/main/java/Banco/scriptTabelas.sql                 
+ - psql -c 'create database vedasprodutowebTeste;' -U postgres
+ - psql -U postgres -d vedasprodutowebTeste -f src/main/java/Banco/scriptTabelas.sql                 
 
 language: java
 jdk:

@@ -38,7 +38,6 @@ public class jsfPais {
 
 
     public String merge() {
-
         Model.Pais p = null;
         List<Model.Pais> lista;
         lista = new CrudPais().getAll();
