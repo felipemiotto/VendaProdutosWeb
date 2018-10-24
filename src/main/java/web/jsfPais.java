@@ -85,7 +85,7 @@ public class jsfPais {
 
         } else {
             String msg = e.getMessage();
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Informe o administrador do erro: " + msg);
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro NO REMOVE PAIS!", "Informe o administrador do erro: " + msg);
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
     }
