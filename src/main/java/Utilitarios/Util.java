@@ -74,6 +74,7 @@ public class Util {
      * Metodo para extrair os dados de conexão com o banco de dados
      */
     public static void extraiConexao() {
+        int a = 1;
         try {
             FileReader fileReader = new FileReader(new File("").getAbsolutePath() + "\\conecta.txt");
             BufferedReader br = new BufferedReader(fileReader);

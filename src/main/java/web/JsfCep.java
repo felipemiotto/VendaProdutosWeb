@@ -144,4 +144,10 @@ public class JsfCep {
         }
         return "";
     }
+    
+    public List<Cep> listaTodos(){
+        List<Cep> lst;
+        lst = crudCep.getAll();
+        return lst;
+    }
 }
