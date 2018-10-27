@@ -1,28 +1,25 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html > 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
     <ui:composition template="../layout_operacoes.xhtml">
         <ui:define name="content">
             <h1>Cadastrar Documento</h1>
-            <h:form>
-                <p:messages id="messages" showDetail="true" closable="true">
-                    <p:autoUpdate />
-                </p:messages>
-                Código:<br></br>
-                <p:inputText value="#{jsfDocumento.codigo}"/>
-                <br></br>
-                Descrição:<br></br>
-                <p:inputText value="#{jsfDocumento.descricao}"/>
-                <br></br>
-                <br></br>
-                <p:commandButton value="Salvar Registro" action="#{jsfDocumento.inserir()}"  ajax="false"/> 
-            </h:form>
+            <b:form>
+                <b:formGroup>
+                    <p:messages id="messages" showDetail="true" closable="true">
+                        <p:autoUpdate />
+                    </p:messages>
+                    <b:inputText value="#{jsfDocumento.codigo}" label="Código" required="true" col-md="3"/>
+                    <b:inputText value="#{jsfDocumento.descricao}" label="Descrição:" required="true" col-md="9"/>
+                    <b:commandButton value="Salvar Registro" look="primary" action="#{jsfDocumento.inserir()}" ajax="true" col-md="2"/> 
+                </b:formGroup>
+            </b:form>
         </ui:define>
     </ui:composition>
-
 </html>
 

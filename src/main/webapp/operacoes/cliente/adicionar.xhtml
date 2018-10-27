@@ -1,36 +1,33 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html >
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
     <ui:composition template="../layout_operacoes.xhtml">
         <ui:define name="content">
-            <h1>Cadastrar Teste</h1>
-            <h:form>
-                <p:messages id="messages" showDetail="true" closable="true">
-                    <p:autoUpdate />
-                </p:messages>
-                Codigo:<br></br>
-                <p:inputText value="#{jsfTeste.codigo}"  />
-
-                <br></br>
-                Nome:<br></br>
-                <p:inputText value="#{jsfTeste.nome}" />
-                
-                <br></br>
-                Teste1:<br></br>
-                <p:selectOneMenu value="#{jsfTeste.codTeste1}" required="true" requiredMessage="Selecione uma opção no menu teste 1    ">
-                    <f:selectItem  itemLabel="=== selecione um ==="/>
-                    <f:selectItems value="#{jsfTeste1.all}" var="t1" itemLabel="#{t1.nome}" itemValue="#{t1.codigo}"/>
-                </p:selectOneMenu>
-
-                <br></br>
-                <p:commandButton value="salvar novo registro" action="#{jsfTeste.persist()}"  ajax="false"/> 
-
-            </h:form>
+            <h1>Cadastrar Clientes</h1>
+            <b:form>
+                <b:formGroup>
+                    <p:messages id="messages" showDetail="true" closable="true">
+                        <p:autoUpdate />
+                    </p:messages>
+                    <b:inputText id="nome" value="#{jsfCliente.nome}" label="Nome:" col-md="12" required="true"/>
+                    <b:inputText id="cep" value="#{jsfCep.cep}" label="Cep:" col-md="2" required="true"/>
+                    <b:inputText id="cidade" value="#{jsfCep.cep}" label="Cidade:" col-md="4" readonly="true"/>
+                    <b:inputText id="estado" value="#{jsfCep.cep}" label="Estado:" col-md="4" readonly="true"/>
+                    <b:inputText id="pais" value="#{jsfCep.cep}" label="Pais:" col-md="2" readonly="true"/>
+                    <b:inputText id="endereco" value="#{jsfCliente.endereco}" label="Endereço:" col-md="3" required="true"/>
+                    <b:inputText id="bairro" value="#{jsfCliente.bairro}" label="Bairro:" col-md="3" required="true"/>
+                    <b:inputText id="numero" value="#{jsfCliente.numero}" label="Número:" col-md="2" required=""/>
+                    <b:inputText id="complemento" value="#{jsfCliente.complemento}" label="Complemento:" col-md="4"/>
+                    <b:inputText id="cpf" value="#{jsfCliente.cpf}" label="Cpf:" col-md="4" mask="999.999.999-99" required="true"/>
+                    <b:inputText id="email" value="#{jsfCliente.email}" label="E-mail:" col-md="4" type="email" required="true"/>
+                    <b:inputText id="fone" value="#{jsfCliente.fone}" label="Telefone Celular:" col-md="4" mask="(99) 99999-9999" required="true"/>
+                </b:formGroup>
+            </b:form>
         </ui:define>
     </ui:composition>
 </html>
