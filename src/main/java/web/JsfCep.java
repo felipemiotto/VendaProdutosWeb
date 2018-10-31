@@ -128,12 +128,12 @@ public class JsfCep {
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
     }
-    
+   
     public String update(Model.Cep Cep) {
         this.id = Cep.getId();
         this.cep = Cep.getCep();
         this.idCidade = Cep.getCidadeId();
-        return "";
+        return "editarCep.xhtml";
     }
 
     public String merge() {

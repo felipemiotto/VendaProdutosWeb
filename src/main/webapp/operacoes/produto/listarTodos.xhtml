@@ -32,7 +32,7 @@
                            <p:commandButton value="remover" action="#{jsfProduto.remove(produto)}" onclick="return confirm('Confirma exclusao?');" ajax="false"/> 
                     </h:column>
                     <h:column>
-                        <p:commandButton value="editar"/> 
+                        <p:commandButton value="editar" action="#{jsfProduto.update(produto)}" ajax="false"/> 
                     </h:column>
                 </h:dataTable>
             </h:form>
