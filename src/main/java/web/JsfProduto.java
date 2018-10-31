@@ -11,6 +11,7 @@ import Model.Cep;
 import Model.Grupo;
 import Model.Produto;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -37,6 +38,8 @@ public class JsfProduto {
     private BigDecimal custo;
     private Grupo idGrupo;   
     private String idGpProduto;
+    
+    CrudProduto crudProduto = new CrudProduto();
   
     public JsfProduto(){        
     }
@@ -197,5 +200,11 @@ public class JsfProduto {
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
         return "";
+    }
+    
+    public List<Produto> listaTodos(){
+        List<Produto> lst;
+        lst = crudProduto.getAll();
+        return lst;
     }
 }

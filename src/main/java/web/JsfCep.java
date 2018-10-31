@@ -29,11 +29,22 @@ public class JsfCep {
     private String cep;
     private Cidade idCidade;
     private String idCidadeAux;
+    private String nomeCidade;
     
     CrudCep crudCep = new CrudCep();
     
     public JsfCep(){        
     }
+
+    public String getNomeCidade() {
+        return nomeCidade;
+    }
+
+    public void setNomeCidade(String nomeCidade) {
+        this.nomeCidade = nomeCidade;
+    }
+    
+    
 
     public UUID getId() {
         return id;
