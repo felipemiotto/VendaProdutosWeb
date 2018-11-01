@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="../layout_operacoes.xhtml">
+        <ui:define name="content">
+            <h1>Editar Produto</h1>
+            <b:form>
+                <b:formGroup>
+                    <p:messages id="messages" showDetail="true" closable="true">
+                        <p:autoUpdate />
+                    </p:messages>
+                    
+                    <b:inputText value="#{jsfProduto.idAux}" label="Id:" col-md="3" />
+                    <b:inputText value="#{jsfProduto.descricao}" label="Id:" col-md="3" />
+                    <b:inputText value="#{jsfProduto.unidade}" label="Id:" col-md="3" />
+                    <b:inputText value="#{jsfProduto.custo}" label="Id:" col-md="3" />
+                    <b:inputText value="#{jsfProduto.peso}" label="Id:" col-md="3" />
+                    <b:inputText value="#{jsfProduto.preco}" label="Id:" col-md="3" />
+                    <b:commandButton value="Salvar Registro" icon-awesome="save" action="#{jsfProduto.merge()}"  ajax="false" col-md="2" /> 
+                </b:formGroup>
+            </b:form>
+        </ui:define>
+    </ui:composition>
+</html>
+
