@@ -1,10 +1,14 @@
 services:
 - postgresql
+addons:
+  sonarcloud:
+    organization: "felipemiotto-github"
 before_script:
- - psql -c 'create database vedasprodutowebTeste;' -U postgres
- - psql -U postgres -d vedasprodutowebTeste -f src/main/java/Banco/scriptTabelas.sql                 
+- psql -U postgres -d vedasprodutowebTeste -f src/main/java/Banco/scriptBanco.sql                 
 
 language: java
 jdk:
 - oraclejdk8
-script: mvn clean verify -DskipTests=false -DskipITs=false -DskipSTs=false
+script:
+- mvn clean verify -DskipTests=false -DskipITs=false -DskipSTs=false
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
