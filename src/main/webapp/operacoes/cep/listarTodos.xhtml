@@ -23,7 +23,7 @@
                            <p:commandButton value="remover" action="#{jsfCep.remove(Cep)}" onclick="return confirm('Confirma exclusao?');" ajax="false"/> 
                     </h:column>
                     <h:column>
-                        <p:commandButton value="editar"/> 
+                        <p:commandButton value="editar" action="#{jsfCep.update(Cep)}" ajax="false"/> 
                     </h:column>
                 </h:dataTable>
             </h:form>

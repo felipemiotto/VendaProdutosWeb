@@ -9,6 +9,7 @@ package web;
 import Crud.CrudProduto;
 import Model.Cep;
 import Model.Grupo;
+import Model.Pais;
 import Model.Produto;
 import java.math.BigDecimal;
 import java.util.List;
@@ -38,11 +39,22 @@ public class JsfProduto {
     private BigDecimal custo;
     private Grupo idGrupo;   
     private String idGpProduto;
+    private String idAux;
     
     CrudProduto crudProduto = new CrudProduto();
   
     public JsfProduto(){        
     }
+
+    public String getIdAux() {
+        return idAux;
+    }
+
+    public void setIdAux(String idAux) {
+        this.idAux = idAux;
+    }
+    
+    
 
     public String getIdGpProduto() {
         return idGpProduto;
@@ -175,7 +187,7 @@ public class JsfProduto {
         this.peso = produto.getPeso();
         this.preco = produto.getPreco();
         this.custo = produto.getCusto();        
-        return "";
+        return "editarProduto.xhtml";
     }
 
     public String merge() {
