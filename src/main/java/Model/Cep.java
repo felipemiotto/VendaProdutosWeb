@@ -37,6 +37,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Cep.findAll", query = "SELECT c FROM Cep c")
+    ,@NamedQuery(name = "Cep.BuscaCepJoin", query = "SELECT A.NOME, B.NOME, C.NOME, D.ID, D.CEP"
+            + " FROM CEP D"
+            + " INNER JOIN CIDADE A ON A.ID = D.CIDADE_ID"
+            + " INNER JOIN ESTADO B ON B.ID = A.ESTADO_ID"
+            + " INNER JOIN PAIS C ON C.ID = B.PAIS_ID"
+            + " WHERE D.CEP = :CEP")
     , @NamedQuery(name = "Cep.findByCep", query = "SELECT c FROM Cep c WHERE c.cep = :cep")})
 public class Cep implements Serializable {
 
@@ -63,9 +69,9 @@ public class Cep implements Serializable {
     public void setCidadeId(String cidadeId) {
         List<Model.Cidade> listaCidade;
         listaCidade = new CrudCidade().getAll();
-        for(int i = 0; i < listaCidade.size(); i++){
-            if(listaCidade.get(i).getId().toString().equals(cidadeId)){
-                 this.cidadeId = listaCidade.get(i);
+        for (int i = 0; i < listaCidade.size(); i++) {
+            if (listaCidade.get(i).getId().toString().equals(cidadeId)) {
+                this.cidadeId = listaCidade.get(i);
                 continue;
             }
         }

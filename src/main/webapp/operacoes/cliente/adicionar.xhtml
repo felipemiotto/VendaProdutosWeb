@@ -15,10 +15,13 @@
                         <p:autoUpdate />
                     </p:messages>
                     <b:inputText id="nome" value="#{jsfCliente.nome}" label="Nome:" col-md="12" required="true"/>
-                    <b:inputText id="cep" value="#{jsfCep.cep}" label="Cep:" col-md="2" required="true"/>
-                    <b:inputText id="cidade" value="#{jsfCep.cep}" label="Cidade:" col-md="4" readonly="true"/>
-                    <b:inputText id="estado" value="#{jsfCep.cep}" label="Estado:" col-md="4" readonly="true"/>
-                    <b:inputText id="pais" value="#{jsfCep.cep}" label="Pais:" col-md="2" readonly="true"/>
+                    <b:inputText id="cep" value="#{jsfCliente.cep}" label="Cep:" col-md="2" required="true" immediate="true"
+                                 ><f:ajax event="change" listener="#{jsfCliente.buscaCep()}" render="@none"/>
+                    </b:inputText>
+
+                    <b:inputText id="cidade" value="#{jsfCliente.nomeCidade}" label="Cidade:" col-md="4" readonly="true"/>
+                    <b:inputText id="estado" value="#{jsfCliente.nomeEstado}" label="Estado:" col-md="4" readonly="true"/>
+                    <b:inputText id="pais" value="#{jsfCliente.nomePais}" label="Pais:" col-md="2" readonly="true"/>
                     <b:inputText id="endereco" value="#{jsfCliente.endereco}" label="Endereço:" col-md="3" required="true"/>
                     <b:inputText id="bairro" value="#{jsfCliente.bairro}" label="Bairro:" col-md="3" required="true"/>
                     <b:inputText id="numero" value="#{jsfCliente.numero}" label="Número:" col-md="2" required=""/>
@@ -26,6 +29,7 @@
                     <b:inputText id="cpf" value="#{jsfCliente.cpf}" label="Cpf:" col-md="4" mask="999.999.999-99" required="true"/>
                     <b:inputText id="email" value="#{jsfCliente.email}" label="E-mail:" col-md="4" type="email" required="true"/>
                     <b:inputText id="fone" value="#{jsfCliente.fone}" label="Telefone Celular:" col-md="4" mask="(99) 99999-9999" required="true"/>
+                    <b:commandButton icon-awesome="save" value="Salvar Registro" action="#{jsfCliente.adicionar()}" col-md="2"></b:commandButton>
                 </b:formGroup>
             </b:form>
         </ui:define>
