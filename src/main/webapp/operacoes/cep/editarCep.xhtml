@@ -16,13 +16,10 @@
                         <p:autoUpdate />
                     </p:messages>
                     
-                    <b:inputText value="#{jsfProduto.idAux}" label="Id:" col-md="3" />
-                    <b:inputText value="#{jsfProduto.descricao}" label="Id:" col-md="3" />
-                    <b:inputText value="#{jsfProduto.unidade}" label="Id:" col-md="3" />
-                    <b:inputText value="#{jsfProduto.custo}" label="Id:" col-md="3" />
-                    <b:inputText value="#{jsfProduto.peso}" label="Id:" col-md="3" />
-                    <b:inputText value="#{jsfProduto.preco}" label="Id:" col-md="3" />
-                    <b:commandButton value="Salvar Registro" icon-awesome="save" action="#{jsfProduto.merge()}"  ajax="false" col-md="2" /> 
+                    <b:inputText value="#{jsfCep.id.toString()}" label="Id:" col-md="3" />
+                    <b:inputText value="#{jsfCep.cep}" label="Id:" col-md="3" />
+                    <b:inputText value="#{jsfCep.idCidade.nome}" label="Id:" col-md="3" />
+                    <b:commandButton value="Salvar Registro" icon-awesome="save" action="#{jsfCep.merge()}"  ajax="false" col-md="2" /> 
                 </b:formGroup>
             </b:form>
         </ui:define>
