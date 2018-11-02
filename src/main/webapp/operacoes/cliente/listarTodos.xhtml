@@ -10,23 +10,23 @@
                 <p:messages id="messages" showDetail="true" closable="true">
                     <p:autoUpdate />
                 </p:messages>
-                <h1>Listar Todos Documentos</h1>
-
-                <h:dataTable value="#{jsfDocumento.listaTodos()}" var="documento">
+                            <h1>Listar Todos Clientes</h1>
+                <h:dataTable value="#{jsfCleinte.listaTodos()}" var="cliente">
                     <h:column>
-                        <h:outputText value="#{documento.codigo}" />
+                        <h:outputText value="#{cleinte.nome}" />
                     </h:column>                    
                     <h:column>
-                        <h:outputText value="#{documento.descricao}" />
+                        <h:outputText value="#{cleinte.cpf}" />
                     </h:column>
                     <h:column>
-                        <p:commandButton value="remover" action="#{jsfDocumento.remove(documento)}" onclick="return confirm('Confirma exclusao?');" ajax="false"/> 
+                        <p:commandButton value="remover" action="#{jsfCliente.remove(cliente)}" onclick="return confirm('Confirma exclusao?');" ajax="false"/> 
                     </h:column>
                     <h:column>
-                        <p:commandButton value="editar" action="#{jsfDocumento.update(documento)}" ajax="false"/> 
+                        <p:commandButton value="editar"/> 
                     </h:column>
                 </h:dataTable>
             </h:form>
+
         </ui:define>
     </ui:composition>
 </html>

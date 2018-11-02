@@ -5,14 +5,17 @@
  */
 package web;
 
-import Crud.CrudCep;
+import Crud.CrudCliente;
+import Model.Cep;
 import Model.Cliente;
-import Model.EnderecoModel;
+import Utilitarios.Util;
 import java.util.List;
 import java.util.UUID;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -32,44 +35,7 @@ public class JsfCliente {
     private String fone;
     private String cpf;
     private String email;
-    private UUID cepId;
-
-    private String cep;
-    private String nomePais;
-    private String nomeEstado;
-    private String nomeCidade;
-
-    public String getNomePais() {
-        return nomePais;
-    }
-
-    public void setNomePais(String nomePais) {
-        this.nomePais = nomePais;
-    }
-
-    public String getNomeEstado() {
-        return nomeEstado;
-    }
-
-    public void setNomeEstado(String nomeEstado) {
-        this.nomeEstado = nomeEstado;
-    }
-
-    public String getNomeCidade() {
-        return nomeCidade;
-    }
-
-    public void setNomeCidade(String nomeCidade) {
-        this.nomeCidade = nomeCidade;
-    }
-
-    public String getCep() {
-        return cep;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
+    private String cepId;
 
     public JsfCliente() {
     }
@@ -146,15 +112,49 @@ public class JsfCliente {
         this.email = email;
     }
 
-    public UUID getCepId() {
+    public String getCepId() {
         return cepId;
     }
 
-    public void setCepId(UUID cepId) {
+    public void setCepId(String cepId) {
         this.cepId = cepId;
     }
 
     public String adicionar() {
+        Cliente cliente;
+        cliente = new Cliente();
+        this.setId(Util.geraId());
+        cliente.setId(id);
+        cliente.setNome(nome);
+        cliente.setBairro(bairro);
+        cliente.setComplemento(complemento);
+        cliente.setCpf(cpf);
+        cliente.setEmail(email);
+        cliente.setEndereco(endereco);
+        cliente.setFone(fone);
+        cliente.setNumero(numero);
+        cliente.setCepId(cepId);
+        Exception insert = new Crud.CrudProduto().persist(cliente);
+        if (insert == null) {
+            this.setNome("");
+            this.setBairro("");
+            this.setCepId("");
+            this.setComplemento("");
+            this.setCpf("");
+            this.setEmail("");
+            this.setEndereco("");
+            this.setFone("");
+            this.setNumero("");
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!!", "Registro adicionado com sucesso");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+
+        } else {
+            String msg = insert.getMessage();
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no persist!", "Informe o administrador do erro: " + msg);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+            return null;
+        }
+
         return "operacoes/cliente/listaTodos.xhtml";
     }
 
@@ -166,19 +166,15 @@ public class JsfCliente {
 
     }
 
-    public void listaTodos() {
-
+    
+    public List<Cliente> listaTodos(){
+        CrudCliente c = new CrudCliente();
+        List<Cliente> lst;
+        lst = c.getAll();
+        return lst;
     }
 
     public void buscaNome(String nome) {
 
     }
-
-    public List<EnderecoModel> buscaCep() {
-        List<EnderecoModel> lst;
-        CrudCep crudCep = new CrudCep();
-        lst = crudCep.selectJoin(cep);
-        return lst;
-    }
-
 }
