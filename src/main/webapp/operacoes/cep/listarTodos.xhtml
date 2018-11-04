@@ -20,10 +20,10 @@
                             <h:outputText value="#{cep.cidadeId.nome}" />
                     </h:column>  
                        <h:column>
-                           <p:commandButton value="remover" action="#{jsfCep.remove(Cep)}" onclick="return confirm('Confirma exclusao?');" ajax="false"/> 
+                           <p:commandButton value="remover" action="#{jsfCep.remove(cep)}" onclick="return confirm('Confirma exclusao?');" ajax="false"/> 
                     </h:column>
                     <h:column>
-                        <p:commandButton value="editar" action="#{jsfCep.update(Cep)}" ajax="false"/> 
+                        <p:commandButton value="editar" action="#{jsfCep.update(cep)}" ajax="false"/> 
                     </h:column>
                 </h:dataTable>
             </h:form>

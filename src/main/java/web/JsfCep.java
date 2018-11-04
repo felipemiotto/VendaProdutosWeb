@@ -6,8 +6,10 @@
 package web;
 
 import Crud.CrudCep;
+import Crud.CrudDocumento;
 import Model.Cep;
 import Model.Cidade;
+import Model.Documento;
 import java.util.List;
 import java.util.UUID;
 import javax.inject.Named;
@@ -30,11 +32,20 @@ public class JsfCep {
     private Cidade idCidade;
     private String idCidadeAux;
     private String nomeCidade;
+    private String idAux;
     
     CrudCep crudCep = new CrudCep();
     
     public JsfCep(){        
     }
+
+    public String getIdAux() {
+        return idAux;
+    }
+
+    public void setIdAux(String idAux) {
+        this.idAux = idAux;
+    }   
 
     public String getNomeCidade() {
         return nomeCidade;
@@ -130,18 +141,27 @@ public class JsfCep {
     }
    
     public String update(Model.Cep Cep) {
-        this.id = Cep.getId();
+        this.idAux = Cep.getId().toString();
         this.cep = Cep.getCep();
         this.idCidade = Cep.getCidadeId();
         return "editarCep.xhtml";
     }
 
     public String merge() {
-        Model.Cep Cep;
-        Cep = new CrudCep().find(this.id);
-        Cep.setCep(cep);
-        Cep.setCidadeId(idCidadeAux);
-        Exception e = new CrudCep().merge(Cep);
+          Cep cep = null;
+        List<Cep> lista;
+        lista = new CrudCep().getAll();
+
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).getId().toString().equals(idAux)) {
+                cep = new CrudCep().find(lista.get(i).getId());
+                cep.setId(lista.get(i).getId());
+                cep.setCidadeId(idCidadeAux);
+                cep.setCep(this.cep);
+                continue;
+            }
+        }
+        Exception e = new CrudCep().merge(cep);
         if (e == null) {
             this.setId(null);
             this.setCep("");
