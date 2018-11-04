@@ -37,12 +37,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Cep.findAll", query = "SELECT c FROM Cep c")
-    ,@NamedQuery(name = "Cep.BuscaCepJoin", query = "SELECT A.NOME, B.NOME, C.NOME, D.ID, D.CEP"
-            + " FROM CEP D"
-            + " INNER JOIN CIDADE A ON A.ID = D.CIDADE_ID"
-            + " INNER JOIN ESTADO B ON B.ID = A.ESTADO_ID"
-            + " INNER JOIN PAIS C ON C.ID = B.PAIS_ID"
-            + " WHERE D.CEP = :CEP")
     , @NamedQuery(name = "Cep.findByCep", query = "SELECT c FROM Cep c WHERE c.cep = :cep")})
 public class Cep implements Serializable {
 

@@ -5,8 +5,11 @@
  */
 package Model;
 
+import Crud.CrudCep;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
+import java.util.UUID;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -51,8 +54,8 @@ public class Cliente implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Column(name = "id")
-    private String id;
+    @Column(name = "id", columnDefinition = "uuid")
+    private UUID id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
@@ -93,11 +96,11 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
-    public Cliente(String id) {
+    public Cliente(UUID id) {
         this.id = id;
     }
 
-    public Cliente(String id, String nome, String endereco, String bairro, String cpf) {
+    public Cliente(UUID id, String nome, String endereco, String bairro, String cpf) {
         this.id = id;
         this.nome = nome;
         this.endereco = endereco;
@@ -105,11 +108,11 @@ public class Cliente implements Serializable {
         this.cpf = cpf;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -181,8 +184,15 @@ public class Cliente implements Serializable {
         return cepId;
     }
 
-    public void setCepId(Cep cepId) {
-        this.cepId = cepId;
+    public void setCepId(String cepId) {
+        List<Cep> listaCep;
+        listaCep = new CrudCep().getAll();
+        for(int i = 0; i < listaCep.size(); i++){
+            if(listaCep.get(i).getId().toString().equals(cepId)){
+                 this.cepId = listaCep.get(i);
+                continue;
+            }
+        }
     }
 
     @Override
@@ -218,5 +228,5 @@ public class Cliente implements Serializable {
     public void setVendaCollection(Collection<Venda> vendaCollection) {
         this.vendaCollection = vendaCollection;
     }
-    
+
 }

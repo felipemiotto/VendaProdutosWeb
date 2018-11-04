@@ -5,9 +5,7 @@
  */
 package Crud;
 
-import Model.Cep;
-import Model.EnderecoModel;
-import Utilitarios.Util;
+
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -35,17 +33,6 @@ public class CrudCep extends AbstractCrud<Model.Cep> {
             System.out.println(e.getMessage());
         }
         return null;
-    }
-
-    public List<EnderecoModel> selectJoin(String cep) {
-        List<EnderecoModel> lst;
-        try {
-            lst = getEntityManager().createNamedQuery("Cep.BuscaCepJoin").setParameter("cep", cep).getResultList();
-            return lst;
-        } catch (Exception ex) {
-            Util.log("Erro Buscar Cep com Join " + ex.getMessage());
-            return null;
-        }
     }
 
     @Override

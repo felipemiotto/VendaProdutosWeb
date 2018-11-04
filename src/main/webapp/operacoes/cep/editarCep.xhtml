@@ -16,9 +16,13 @@
                         <p:autoUpdate />
                     </p:messages>
                     
-                    <b:inputText value="#{jsfCep.id.toString()}" label="Id:" col-md="3" />
+                    <b:inputText value="#{jsfCep.idAux}" label="Id:" col-md="3" />
                     <b:inputText value="#{jsfCep.cep}" label="Id:" col-md="3" />
-                    <b:inputText value="#{jsfCep.idCidade.nome}" label="Id:" col-md="3" />
+                     Cidade:<br></br>                
+                <p:selectOneMenu value="#{jsfCep.idCidadeAux}" required="true" requiredMessage="Selecione uma opção no menu teste 1    ">
+                    <f:selectItem  itemLabel="Selecione um..."/>
+                    <f:selectItems value="#{jsfCidade.listaTodos()}" var="cidade" itemValue="#{cidade.id}" itemLabel="#{cidade.nome}"/>
+                </p:selectOneMenu>
                     <b:commandButton value="Salvar Registro" icon-awesome="save" action="#{jsfCep.merge()}"  ajax="false" col-md="2" /> 
                 </b:formGroup>
             </b:form>
