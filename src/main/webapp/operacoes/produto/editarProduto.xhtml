@@ -22,6 +22,10 @@
                     <b:inputText value="#{jsfProduto.custo}" label="Id:" col-md="3" />
                     <b:inputText value="#{jsfProduto.peso}" label="Id:" col-md="3" />
                     <b:inputText value="#{jsfProduto.preco}" label="Id:" col-md="3" />
+                    <p:selectOneMenu value="#{jsfProduto.idGpProduto}" required="true" requiredMessage="Selecione uma opção no menu teste 1    ">
+                    <f:selectItem  itemLabel="Selecione um..."/>
+                    <f:selectItems value="#{jsfGrupoProduto.listaTodos()}" var="grupo" itemValue="#{grupo.id}" itemLabel="#{grupo.nome}"/>
+                </p:selectOneMenu>
                     <b:commandButton value="Salvar Registro" icon-awesome="save" action="#{jsfProduto.merge()}"  ajax="false" col-md="2" /> 
                 </b:formGroup>
             </b:form>

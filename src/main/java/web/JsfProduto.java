@@ -6,6 +6,7 @@
 
 package web;
 
+import Crud.CrudCep;
 import Crud.CrudProduto;
 import Model.Cep;
 import Model.Grupo;
@@ -181,6 +182,7 @@ public class JsfProduto {
     
     public String update(Model.Produto produto) {
         this.id = produto.getId();
+        this.idAux = produto.getId().toString();
         this.descricao = produto.getDescricao();
         this.unidade = produto.getUnidade();
         this.idGrupo = produto.getGrupoId();
@@ -191,9 +193,23 @@ public class JsfProduto {
     }
 
     public String merge() {
-        Model.Produto produto;
-        produto = (Produto) new CrudProduto().find(this.id);
-        produto.setDescricao(descricao);
+         Produto produto = null;
+        List<Produto> lista;
+        lista = new CrudProduto().getAll();
+
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).getId().toString().equals(idAux)) {
+                produto = new Produto();
+                produto.setId(lista.get(i).getId());
+                produto.setCusto(custo);
+                produto.setDescricao(descricao);
+                produto.setGrupoId(idGpProduto);
+                produto.setPeso(peso);
+                produto.setPreco(preco);
+                produto.setUnidade(unidade);                
+                continue;
+            }
+        }
         Exception e = new CrudProduto().merge(produto);
         if (e == null) {
             this.setId(null);
