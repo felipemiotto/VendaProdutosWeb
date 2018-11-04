@@ -51,7 +51,7 @@ public class jsfEstado {
         estado.setSigla(sigla);
         estado.setPaisId(paisId);
      
-        Exception insert = new Crud.CrudProduto().persist(estado);
+        Exception insert = new Crud.CrudEstado().persist(estado);
         if(insert == null){
             this.setNome("");
             this.setIdPais(null);

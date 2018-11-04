@@ -11,25 +11,35 @@
             <h:form>
 
                 Nome: <br></br>
-                <p:inputText value="#{jsfEstado.nome}"/>
-                <br></br>
+                <p:inputText  id="nome" value="#{jsfEstado.nome}" required="true" 
+                              requiredMessage="Você precisa informar o nome do estado"
+                              validatorMessage="O nome do estado deve ter de 4 a 50 caracteres">
+                    <f:validateLength maximum="50" minimum="4"/>
+                    <p:clientValidator event="keyup"/>
+                </p:inputText>  
+                <p:message for="nome"/> 
                 Sigla: <br></br>
-                <p:inputText value="#{jsfEstado.sigla}"/>
-                <br></br>
+                <p:inputText id="sigla" value="#{jsfEstado.sigla}" required="true" 
+                             requiredMessage="Você precisa informar a sigla do estado"
+                             validatorMessage="A sigla deve ser composta por apenas dois caracteres">
+                    <f:validateLength maximum="2" minimum="2"/>
+                    <p:clientValidator event="keyup"/>
+                </p:inputText>  
+                <p:message for="sigla"/>
                 País:<br></br>
 
-                <p:selectOneMenu value="#{jsfEstado.idPais}" required="true" requiredMessage="Selecione uma opção no menu teste 1    ">
+                <p:selectOneMenu id="pais" value="#{jsfEstado.idPais}" required="true" requiredMessage="Selecione um país">
                     <f:selectItem  itemLabel="Selecione um..."/>
                     <f:selectItems value="#{jsfPais.all}" var="pais" itemValue="#{pais.id}" itemLabel="#{pais.nome}"/>
                 </p:selectOneMenu>
-      
-                <br></br>                
+                
+                <br></br>     
                 <br></br>
                 <p:commandButton value="Salvar Registro" action="#{jsfEstado.persist}"  ajax="false"/> 
             </h:form>
             <p:messages id="messages" showDetail="true" closable="true">
                 <p:autoUpdate />
-            </p:messages>
+            </p:messages>              
         </ui:define>
     </ui:composition>
 

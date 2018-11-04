@@ -14,7 +14,7 @@
 
                 <h:dataTable value="#{jsfCidade.listaTodos()}" var="cidade">
                     <h:column>
-                        <h:outputText value="#{cidade.nome}" />
+                        <h:outputText value="#{cidade.nome}, " />
                     </h:column>                    
                     <h:column>
                         <h:outputText value="#{cidade.estadoId.sigla}" />

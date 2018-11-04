@@ -11,25 +11,28 @@
             <h:form>
 
                 Nome: <br></br>
-                <p:inputText value="#{jsfCidade.nome}"/>
-                <br></br>
-
+                <p:inputText id="nome" value="#{jsfCidade.nome}" required="true"
+                             requiredMessage="Você precisa informar o nome da cidade."
+                             validatorMessage="O nome da cidade deve ter de 4 a 50 caracteres.">
+                    <f:validateLength maximum="50" minimum="4"/>
+                    <p:clientValidator event="keyup"/>
+                </p:inputText><br></br>
+                <p:message for="nome"/> 
+                
                 Estado:<br></br>
 
-                <p:selectOneMenu value="#{jsfCidade.estadoId}" required="true" requiredMessage="Selecione uma opção no menu teste 1    ">
+                <p:selectOneMenu id="estado" value="#{jsfCidade.estadoId}" required="true" requiredMessage="Selecione um estado.">
                     <f:selectItem  itemLabel="Selecione um..."/>
-                    <f:selectItems value="#{jsfEstado.listaTodos()}" var="estado" itemValue="#{estado.id}" itemLabel="#{estado.nome}"/>
+                    <f:selectItems value="#{jsfEstado.listaTodos()}" var="estado" itemValue="#{estado.id}" itemLabel="#{estado.nome}"/>                    
                 </p:selectOneMenu>
-      
-                <br></br>                
+                <br></br>
                 <br></br>
                 <p:commandButton value="Salvar Registro" action="#{jsfCidade.persist}"  ajax="false"/> 
             </h:form>
             <p:messages id="messages" showDetail="true" closable="true">
                 <p:autoUpdate />
-            </p:messages>
-        </ui:define>
+            </p:messages>            
+        </ui:define>        
     </ui:composition>
-
 </html>
 

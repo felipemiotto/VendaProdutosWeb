@@ -14,10 +14,10 @@
 
                 <h:dataTable value="#{jsfPais.listaTodos()}" var="pais">
                     <h:column>
-                        <h:outputText value="#{pais.codigo}" />
+                        <h:outputText value="#{pais.codigo}"/>
                     </h:column>
                     <h:column>
-                        <h:outputText value="#{pais.nome}" />
+                        <h:outputText value="#{pais.nome}"/>
                     </h:column>
                     <h:column>
                         <p:commandButton value="remover" action="#{jsfPais.remove(pais)}" onclick="return confirm('Confirma exclusao?');" ajax="false"/> 

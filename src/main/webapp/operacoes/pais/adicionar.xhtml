@@ -21,10 +21,7 @@
                 
                 Código: <br></br>
                 <p:inputText id="codigo" value="#{jsfPais.codigo}" required="true"
-                             requiredMessage="Você precisa informar o código"
-                              
-                             validatorMessage="O código deve ser composto por 4 números">
-                    <f:validateLength  maximum="5" minimum="3"/>
+                             requiredMessage="Você precisa informar o código">
                     <p:clientValidator event="keyup"/>
                 </p:inputText>  
                 <p:message for="codigo"/>
