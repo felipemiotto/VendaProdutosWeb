@@ -11,13 +11,29 @@
             <h:form>
 
                 Nome: <br></br>
-                <p:inputText value="#{jsfPais.nome}"/>
-                <br></br>
+                <p:inputText id="nome" value="#{jsfPais.nome}" required="true"
+                             requiredMessage="Você precisa informar nome do país."
+                             validatorMessage="O nom do pais deve ter de 2 a 50 caracteres">
+                    <f:validateLength maximum="50" minimum="2"/>
+                    <p:clientValidator event="keyup"/>
+                </p:inputText>  
+                <p:message for="nome"/> <br></br>          
+                
                 Código: <br></br>
-                <p:inputText value="#{jsfPais.codigo}"/>
+                <p:inputText id="codigo" value="#{jsfPais.codigo}" required="true"
+                             requiredMessage="Você precisa informar o código"
+                              
+                             validatorMessage="O código deve ser composto por 4 números">
+                    <f:validateLength  maximum="5" minimum="3"/>
+                    <p:clientValidator event="keyup"/>
+                </p:inputText>  
+                <p:message for="codigo"/>
                 <br></br>
-                <br></br>
-                <p:commandButton value="Salvar Registro" action="#{jsfPais.inserir()}"  ajax="false"/> 
+
+                <p:commandButton value="Salvar Registro" 
+                                 action="#{jsfPais.inserir()}"  
+                                 ajax="false"
+                                 update="@form" validateClient="true"/> 
             </h:form>
             <p:messages id="messages" showDetail="true" closable="true">
                 <p:autoUpdate />

@@ -31,7 +31,7 @@ public abstract class AbstractCrud<T> {
             getEntityManager().getTransaction().commit();
             return null;
         } catch (Exception e) {
-            return e;
+            throw e;
         }
     }
 
