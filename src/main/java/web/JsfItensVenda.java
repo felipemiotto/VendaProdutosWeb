@@ -26,6 +26,15 @@ public class JsfItensVenda {
     private UUID vendaId;
     private Produto produto;
 
+    private String idAuxProduto;
+
+    public String getIdAuxProduto() {
+        return idAuxProduto;
+    }
+
+    public void setIdAuxProduto(String idAuxProduto) {
+        this.idAuxProduto = idAuxProduto;
+    }
     public UUID getId() {
         return id;
     }

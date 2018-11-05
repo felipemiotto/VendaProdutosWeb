@@ -5,10 +5,13 @@
  */
 package Model;
 
+import Crud.CrudCliente;
+import Crud.CrudDocumento;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -147,16 +150,30 @@ public class Venda implements Serializable {
         return clienteId;
     }
 
-    public void setClienteId(Cliente clienteId) {
-        this.clienteId = clienteId;
+    public void setClienteId(String clienteId) {
+        List<Cliente> listaCliente;
+        listaCliente = new CrudCliente().getAll();
+        for(int i = 0; i < listaCliente.size(); i++){
+            if(listaCliente.get(i).getId().toString().equals(clienteId)){
+                 this.clienteId = listaCliente.get(i);
+                continue;
+            }
+        }
     }
 
     public Documento getDocumentoId() {
         return documentoId;
     }
 
-    public void setDocumentoId(Documento documentoId) {
-        this.documentoId = documentoId;
+    public void setDocumentoId(String documentoId) {
+       List<Documento> listaDocumento;
+        listaDocumento = new CrudDocumento().getAll();
+        for(int i = 0; i < listaDocumento.size(); i++){
+            if(listaDocumento.get(i).getId().toString().equals(documentoId)){
+                 this.documentoId = listaDocumento.get(i);
+                continue;
+            }
+        }
     }
 
     @Override

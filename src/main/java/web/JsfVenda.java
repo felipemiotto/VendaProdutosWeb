@@ -38,8 +38,64 @@ public class JsfVenda {
     private Date emissao;
     private BigDecimal desconto;
     private BigDecimal total;
-    private Cliente clienteId;
-    private Documento documentoId;
+    private String clienteId;
+    private String documentoId;
+
+    private static String idAuxCliente;
+    private static String idAuxDocumento;
+    private static String idAuxProduto;
+
+    public String getIdAuxProduto() {
+        return idAuxProduto;
+    }
+
+    public void setIdAuxProduto(String idAuxProduto) {
+        this.idAuxProduto = idAuxProduto;
+    }
+
+    public String getIdAuxCliente() {
+        return idAuxCliente;
+    }
+
+    public void setIdAuxCliente(String idAuxCliente) {
+        this.idAuxCliente = idAuxCliente;
+    }
+
+    public String getIdAuxDocumento() {
+        return idAuxDocumento;
+    }
+
+    public void setIdAuxDocumento(String idAuxDocumento) {
+        this.idAuxDocumento = idAuxDocumento;
+    }
+
+    public BigDecimal getDescontoUnitario() {
+        return descontoUnitario;
+    }
+
+    public void setDescontoUnitario(BigDecimal descontoUnitario) {
+        this.descontoUnitario = descontoUnitario;
+    }
+
+    public BigDecimal getValorUnitario() {
+        return valorUnitario;
+    }
+
+    public void setValorUnitario(BigDecimal valorUnitario) {
+        this.valorUnitario = valorUnitario;
+    }
+
+    private BigDecimal descontoUnitario;
+    private BigDecimal valorUnitario;
+
+    public BigDecimal getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(BigDecimal quantidade) {
+        this.quantidade = quantidade;
+    }
+    private BigDecimal quantidade;
 
     private Collection<ItensVenda> litem;
 
@@ -98,28 +154,31 @@ public class JsfVenda {
         this.total = total;
     }
 
-    public Cliente getClienteId() {
+    public String getClienteId() {
         return clienteId;
     }
 
-    public void setClienteId(Cliente clienteId) {
+    public void setClienteId(String clienteId) {
         this.clienteId = clienteId;
     }
 
-    public Documento getDocumentoId() {
+    public String getDocumentoId() {
         return documentoId;
     }
 
-    public void setDocumentoId(Documento documentoId) {
+    public void setDocumentoId(String documentoId) {
         this.documentoId = documentoId;
     }
 
-    public void addProduto(Produto prod) {
+    public void addProduto(Produto produto) {
+        System.out.println("Cliente: " + this.clienteId);
+        System.out.println("Documento: " + this.idAuxDocumento);
+        System.out.println("Produto: " + this.idAuxProduto);
         boolean achou = false;
         for (ItensVenda itemvenda : litem) {
-            if (Objects.equals(itemvenda.getProdutoId().getId(), prod.getId())) {
-                //o produto ja esta no carrinho
-                //itemvenda.setQuantidade(itemvenda.getQuantidade() + 1);
+            if (Objects.equals(itemvenda.getProdutoId().getId(), produto.getId())) {
+//                //o produto ja esta no carrinho
+//                //itemvenda.setQuantidade(itemvenda.getQuantidade() + 1);
                 itemvenda.setQuantidade(itemvenda.getQuantidade().add(BigDecimal.valueOf(1.00)));
                 achou = true;
                 break;
@@ -127,16 +186,26 @@ public class JsfVenda {
         }
         if (!achou) { //o produto nao esta no carrinho
             ItensVenda ic = new ItensVenda();
-            ic.setProdutoId(prod);
-            ic.setQuantidade(BigDecimal.valueOf(1.00));
+            ic.setId(Util.geraId());
+            ic.setProdutoId(idAuxProduto);
+            ic.setQuantidade(quantidade);
+            ic.setDesconto(descontoUnitario);
+            ic.setValorUnitario(valorUnitario);
+            ic.setValorTotal(ic.getQuantidade().multiply(ic.getValorUnitario()));
+            ic.setDesconto(descontoUnitario);
+            this.setTotal(ic.getValorTotal());
+            this.setDesconto(ic.getDesconto());
             litem.add(ic);
+            this.setQuantidade(null);
+            this.setDescontoUnitario(null);
+            this.setValorUnitario(null);
         }
     }
-    
+
     public void removeProduto(Produto prod) {
 
         for (ItensVenda itemvenda : litem) {
-            if (itemvenda.getProdutoId().getId()== prod.getId()) {
+            if (itemvenda.getProdutoId().getId() == prod.getId()) {
                 if (itemvenda.getQuantidade().equals(1)) {
                     litem.remove(itemvenda);
                 } else {
@@ -146,27 +215,29 @@ public class JsfVenda {
             }
         }
     }
-    
+
     public void concluirVenda() {
         Venda venda = new Venda();
         venda.setId(Util.geraId());
-        venda.setEmissao(new Date());
+        venda.setNumero(numero);
+        venda.setClienteId(idAuxCliente);
+        venda.setEmissao(emissao);
+        venda.setDocumentoId(idAuxDocumento);
+        venda.setDesconto(desconto);
+        venda.setTotal(total);
         venda.setItensVendaCollection(litem);
         Exception insert = new CrudVenda().persist(venda);
-
         if (insert == null) {
-
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!!", "Registro adicionado com sucesso");
             FacesContext.getCurrentInstance().addMessage(null, message);
-
         } else {
             String msg = insert.getMessage();
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Informe o administrador do erro: " + msg);
             FacesContext.getCurrentInstance().addMessage(null, message);
-
         }
-
         litem = new ArrayList();
     }
-
+     public java.util.Collection<Venda> listaTodos() {
+        return new CrudVenda().getAll();
+    }
 }

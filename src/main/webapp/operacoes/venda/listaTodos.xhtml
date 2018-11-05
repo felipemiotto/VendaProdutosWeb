@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="../layout_operacoes.xhtml">
+        <ui:define name="content">
+            <h1>Listar todas as Vendas</h1>
+            <h:form>
+                <p:messages id="messages" showDetail="true" closable="true">
+                    <p:autoUpdate />
+                </p:messages>
+                <h:dataTable value="#{jsfVenda.listaTodos()}" var="venda">
+                    <h:column>
+                        <h:outputText value="#{venda.numero}" />
+                    </h:column>
+                    <h:column>
+                        <p:calendar value="#{venda.emissao}" pattern="dd/MM/yyyy"/>
+                    </h:column>
+                    <h:column>
+                        <h:dataTable value="#{venda.itensVendaCollection}" var="itm">
+                            <h:column>
+                                <h:outputText value="#{itm.produtoId.descricao}" />
+                            </h:column>
+                            <h:column>
+                                <h:outputText value="#{itm.quantidade}" />
+                            </h:column>
+                        </h:dataTable>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+
