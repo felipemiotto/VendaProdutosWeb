@@ -10,23 +10,43 @@
                 <p:messages id="messages" showDetail="true" closable="true">
                     <p:autoUpdate />
                 </p:messages>
-                            <h1>Listar Todos Clientes</h1>
-                <h:dataTable value="#{jsfCleinte.listaTodos()}" var="cliente">
+                <h1>Listar Todos Clientes</h1>
+                <h:dataTable value="#{jsfCliente.listaTodos()}" var="cliente">
                     <h:column>
-                        <h:outputText value="#{cleinte.nome}" />
-                    </h:column>                    
+                        <h:outputText value="#{cliente.nome}" />
+                    </h:column>
                     <h:column>
-                        <h:outputText value="#{cleinte.cpf}" />
+                        <h:outputText value="#{cliente.endereco}" />
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{cliente.numero}" />
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{cliente.complemento}" />
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{cliente.bairro}" />
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{cliente.fone}" />
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{cliente.cpf}" />
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{cliente.email}" />
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{cliente.cepId.cep}" />
                     </h:column>
                     <h:column>
                         <p:commandButton value="remover" action="#{jsfCliente.remove(cliente)}" onclick="return confirm('Confirma exclusao?');" ajax="false"/> 
                     </h:column>
                     <h:column>
-                        <p:commandButton value="editar"/> 
+                        <p:commandButton value="editar" action="#{jsfCliente.update(cliente)}" ajax="false"/> 
                     </h:column>
                 </h:dataTable>
             </h:form>
-
         </ui:define>
     </ui:composition>
 </html>

@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+    <ui:composition template="../layout_operacoes.xhtml">
+        <ui:define name="content">
+            <h1>Alterar Clientes</h1>
+            <h:form>
+                <p:messages id="messages" showDetail="true" closable="true">
+                    <p:autoUpdate />
+                </p:messages>
+                  Id: <br></br>
+                  <p:inputText value="#{jsfCliente.idAux}" required="true" readonly="true"/>
+                <br></br>
+                Nome: <br></br>
+                <p:inputText value="#{jsfCliente.nome}" required="true" requiredMessage="Nome é Obrigatório!"/>
+                <br></br>
+                Endereço:<br></br>
+                <p:inputText value="#{jsfCliente.endereco}" required="true" requiredMessage="Endereço é Obrigatório!"/>
+                <br></br>
+                Numero:<br></br>
+                <p:inputText value="#{jsfCliente.numero}"  required="true" requiredMessage="Numero é Obrigatório!"/>
+                <br></br>
+                Complemento:<br></br>
+                <p:inputText value="#{jsfCliente.complemento}" />
+                <br></br>
+                Bairro:<br></br>
+                <p:inputText value="#{jsfCliente.bairro}"  required="true" requiredMessage="Bairro é Obrigatório!"/>
+                <br></br>
+                Cep:<br></br>
+                <p:selectOneMenu value="#{jsfCliente.cepId}" required="true" requiredMessage="Selecione um Cep">
+                    <f:selectItem  itemLabel="Selecione um..."/>
+                    <f:selectItems value="#{jsfCep.listaTodos()}" var="cep" itemValue="#{cep.id}" itemLabel="#{cep.cep}"/>
+                </p:selectOneMenu>
+                <br></br>
+                Fone:<br></br>
+                <p:inputText value="#{jsfCliente.fone}"  required="true" requiredMessage="Fone é Obrigatório!" />
+                <br></br>
+                Cpf:<br></br>
+                <p:inputText value="#{jsfCliente.cpf}"  required="true" requiredMessage="Cpf é Obrigatório!"/>
+                <br></br>
+                E-mail:<br></br>
+                <p:inputText value="#{jsfCliente.email}"  required="true" requiredMessage="E-mail é Obrigatório!" type="email"/>
+                <br></br>
+                 <p:commandButton value="Salvar Registro" action="#{jsfCliente.merge()}"  ajax="false"/> 
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+
