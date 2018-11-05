@@ -6,7 +6,6 @@
 package web;
 
 import Crud.CrudCliente;
-import Model.Cep;
 import Model.Cliente;
 import Utilitarios.Util;
 import java.util.List;
@@ -37,6 +36,7 @@ public class JsfCliente {
     private String email;
     private String cepId;
     CrudCliente c = new CrudCliente();
+    public static String idCliente;
 
     public String getIdAux() {
         return idAux;
@@ -180,21 +180,30 @@ public class JsfCliente {
         this.nome = cliente.getNome();
         this.numero = cliente.getNumero();
         this.cepId = cliente.getCepId().toString();
+        idCliente = cliente.getId().toString();
         return "editar.xhtml";
     }
 
     public void remove(Cliente cliente) {
+        Exception e = new CrudCliente().remove(cliente);
+        if (e == null) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!!", "Registro excluido com sucesso");
+            FacesContext.getCurrentInstance().addMessage(null, message);
 
+        } else {
+            String msg = e.getMessage();
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Informe o administrador do erro: " + msg);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
     }
-    
+
     public String merge() {
         Cliente cliente = null;
         List<Cliente> lista;
         lista = new CrudCliente().getAll();
-     //   idAux = idAux;
 
         for (int i = 0; i < lista.size(); i++) {
-            if (lista.get(i).getId().toString().equals(idAux)) {
+            if (lista.get(i).getId().toString().equals(idCliente)) {
                 cliente = new CrudCliente().find(lista.get(i).getId());
                 cliente.setId(lista.get(i).getId());
                 cliente.setNome(nome);

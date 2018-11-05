@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
+import java.util.UUID;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -49,7 +50,7 @@ public class Venda implements Serializable {
     @NotNull
     @Lob
     @Column(name = "id", columnDefinition = "uuid")
-    private String id;
+    private UUID id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 10)
@@ -81,11 +82,11 @@ public class Venda implements Serializable {
     public Venda() {
     }
 
-    public Venda(String id) {
+    public Venda(UUID id) {
         this.id = id;
     }
 
-    public Venda(String id, String numero, Date emissao, BigDecimal desconto, BigDecimal total) {
+    public Venda(UUID id, String numero, Date emissao, BigDecimal desconto, BigDecimal total) {
         this.id = id;
         this.numero = numero;
         this.emissao = emissao;
@@ -93,11 +94,11 @@ public class Venda implements Serializable {
         this.total = total;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

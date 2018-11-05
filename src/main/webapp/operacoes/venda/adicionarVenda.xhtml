@@ -4,36 +4,48 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
     <ui:composition template="../layout_operacoes.xhtml">
         <ui:define name="content">
-            <h1>Lançar Venda</h1>
-            <b:form>
-                <b:inputText id="numero" value="#{jsfVenda.numero}" label="Numero:" required="true" col-md="2" type="number"/>
-                <b:datepicker  id="emissao" value="#{jsfVenda.emissao}" col-md="2" required="true" changeMonth="true" changeYear="true" showButtonPanel="true" label="Emissão:"/>
-                <b:inputText id="cliente" value="#{jsfVenda.clienteId}" col-md="8" required="true" label="Cliente:"/>
-                <b:inputText id="desconto" value="#{jsfVenda.desconto}" type="number" label="Desconto:" readonly="true" col-md="2"/>  
-                <b:inputText id="total" value="#{jsfVenda.total}" type="number" col-md="2" label="Total:" readonly="true"/>
-                <b:inputText id="produto" value="#{jsfVenda.produto}"  col-md="2" label="Produto:" />  
+            <h1>Efetuar venda</h1>
+            <h:form>
+                <p:messages id="messages" showDetail="true" closable="true">
+                    <p:autoUpdate />
+                </p:messages>
+                Adicione produtos em seu carrinho!!!! <br/>
+                <h:dataTable value="#{jsfProduto.listaTodos()}" var="prod">
+                    <h:column>
+                        <h:outputText value="#{prod.descricao}"/>
+                    </h:column>
+                    <h:column>
+                        <h:commandButton value="+" action="#{jsfVenda.addProduto(prod)}" />
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+            <br/>
+            <h:form>
+                Seu carrinho contem os itens
+                <h:dataTable value="#{jsfVenda.litem}" var="litem">
+                    <h:column>
+                        <h:outputText value="#{litem.produtoId.id}" />
+                    </h:column>
 
-                <b:dataTable id="tabelaProdutos" value="#{jsfItensVenda.itens}" var="item">
-                    <b:dataTableColumn value="#{item.protudoId.codigo}"></b:dataTableColumn>
-                    <b:dataTableColumn value="#{item.produtoId.descricao}"></b:dataTableColumn>
-                    <b:dataTableColumn value="#{item.produtoId.quantidade}"></b:dataTableColumn>
-                    <b:dataTableColumn value="#{item.produtoId.valorUnitario}"></b:dataTableColumn>
-                    <b:dataTableColumn value="#{item.produtoId.desconto}"></b:dataTableColumn>
-                    <b:dataTableColumn>
-                        <b:commandButton value="Ações" icon-awesome="trash" action="#{jsfItensVenda.remove(item)}"></b:commandButton>
-                    </b:dataTableColumn>
-                </b:dataTable>
-                <b:commandButton value="Fechar Venda" icon-awesome="save" action="#{jsfVenda.fechaVenda}"></b:commandButton>
-            </b:form>
-            <p:messages id="messages" showDetail="true" closable="true">
-                <p:autoUpdate />
-            </p:messages>
+                    <h:column>
+                        <h:outputText value="#{litem.produtoId.descricao}" />
+                    </h:column>
+
+                    <h:column>
+                        <h:outputText value="#{litem.quantidade}" />
+                    </h:column>
+
+                    <h:column>
+                        <h:commandButton value="-" action="#{jsfVenda.removeProduto(litem.setProdutoId(produtoId))}" />
+                    </h:column>
+                </h:dataTable>
+                <h:commandButton value="Efetivar venda" action="#{jsfVenda.concluirVenda()}" onclick="return confirm('Confirma conclusão da venda?');"/>
+            </h:form>
         </ui:define>
     </ui:composition>
-
 </html>
 
