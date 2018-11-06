@@ -25,7 +25,7 @@ public class CrudPais extends AbstractCrud<Pais>{
         if (em == null) {
             em = Persistence.createEntityManagerFactory(EMNames.EMN1, EMNames.getEMN1Props()).createEntityManager();
         }
-        return em;    
+        return em;
     }
     
 }

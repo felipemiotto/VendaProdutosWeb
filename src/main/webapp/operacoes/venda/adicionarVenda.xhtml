@@ -4,36 +4,83 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="../layout_operacoes.xhtml">
         <ui:define name="content">
-            <h1>Lançar Venda</h1>
-            <b:form>
-                <b:inputText id="numero" value="#{jsfVenda.numero}" label="Numero:" required="true" col-md="2" type="number"/>
-                <b:datepicker  id="emissao" value="#{jsfVenda.emissao}" col-md="2" required="true" changeMonth="true" changeYear="true" showButtonPanel="true" label="Emissão:"/>
-                <b:inputText id="cliente" value="#{jsfVenda.clienteId}" col-md="8" required="true" label="Cliente:"/>
-                <b:inputText id="desconto" value="#{jsfVenda.desconto}" type="number" label="Desconto:" readonly="true" col-md="2"/>  
-                <b:inputText id="total" value="#{jsfVenda.total}" type="number" col-md="2" label="Total:" readonly="true"/>
-                <b:inputText id="produto" value="#{jsfVenda.produto}"  col-md="2" label="Produto:" />  
-
-                <b:dataTable id="tabelaProdutos" value="#{jsfItensVenda.itens}" var="item">
-                    <b:dataTableColumn value="#{item.protudoId.codigo}"></b:dataTableColumn>
-                    <b:dataTableColumn value="#{item.produtoId.descricao}"></b:dataTableColumn>
-                    <b:dataTableColumn value="#{item.produtoId.quantidade}"></b:dataTableColumn>
-                    <b:dataTableColumn value="#{item.produtoId.valorUnitario}"></b:dataTableColumn>
-                    <b:dataTableColumn value="#{item.produtoId.desconto}"></b:dataTableColumn>
-                    <b:dataTableColumn>
-                        <b:commandButton value="Ações" icon-awesome="trash" action="#{jsfItensVenda.remove(item)}"></b:commandButton>
-                    </b:dataTableColumn>
-                </b:dataTable>
-                <b:commandButton value="Fechar Venda" icon-awesome="save" action="#{jsfVenda.fechaVenda}"></b:commandButton>
-            </b:form>
-            <p:messages id="messages" showDetail="true" closable="true">
-                <p:autoUpdate />
-            </p:messages>
+            <h1>Efetuar venda</h1>
+            <h:form>
+                <p:messages id="messages" showDetail="true" closable="true">
+                    <p:autoUpdate />
+                    Numero:
+                    <br></br>
+                    <p:inputText value="#{jsfVenda.numero}" ></p:inputText>
+                    <br></br>
+                    Cliente:
+                </p:messages>
+                <p:selectOneMenu value="#{jsfVenda.idAuxCliente}" required="true" requiredMessage="Selecione um Cliente">
+                    <f:selectItem  itemLabel="Selecione um Cliente"/>
+                    <f:selectItems value="#{jsfCliente.listaTodos()}" var="cliente" itemValue="#{cliente.id}" itemLabel="#{cliente.nome}"/>
+                </p:selectOneMenu>
+                <br></br>
+                Tipo Documemto:
+                <br></br>
+                <p:selectOneMenu value="#{jsfVenda.idAuxDocumento}" >
+                    <f:selectItem  itemLabel="Selecione um Tipo de Documento"/>
+                    <f:selectItems value="#{jsfDocumento.listaTodos()}" var="documento" itemValue="#{documento.id}" itemLabel="#{documento.descricao}"/>
+                </p:selectOneMenu>
+                <br></br>
+                Emissão:
+                <br></br>
+                <p:calendar value="#{jsfVenda.emissao}" pattern="dd/MM/yyyy"></p:calendar>
+                <br></br>
+                Desconto:
+                <br></br>
+                <p:inputText value="#{jsfVenda.desconto}" readonly="true"></p:inputText>
+                <br></br>
+                Total:
+                <br></br>
+                <p:inputText value="#{jsfVenda.total}" readonly="true"></p:inputText>
+                <br></br>
+                Adicione produtos em seu carrinho!!!! <br/>
+                <p:selectOneMenu value="#{jsfVenda.idAuxProduto}" required="true" requiredMessage="Selecione um Produto">
+                    <f:selectItem  itemLabel="Selecione um Produto"/>
+                    <f:selectItems value="#{jsfProduto.listaTodos()}" var="produto" itemValue="#{produto.id}" itemLabel="#{produto.descricao}"/>
+                </p:selectOneMenu>
+                <br></br>
+                Quantidade:
+                <br></br>
+                <p:inputText value="#{jsfVenda.quantidade}" required="true"></p:inputText>
+                <br></br>
+                Valor Unitario:
+                <br></br>
+                <p:inputText value="#{jsfVenda.valorUnitario}" required="true"></p:inputText>
+                <br></br>
+                Desconto:
+                <br></br>
+                <p:inputText value="#{jsfVenda.descontoUnitario}" required="true"></p:inputText>
+                <br></br>
+                <p:commandButton value="Adicionar Produto" action="#{jsfVenda.addProduto(produto)}"  ajax="false"/> 
+            </h:form>
+            <br/>
+            <h:form>
+                Seu carrinho contem os itens
+                <h:dataTable value="#{jsfVenda.litem}" var="litem">
+                    <h:column>
+                        <h:outputText value="#{litem.produtoId.id}" />
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{litem.produtoId.descricao}" />
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{litem.quantidade}" />
+                    </h:column>
+                    <h:column>
+                        <h:commandButton value="-" action="#{jsfVenda.removeProduto(litem.setProdutoId(produtoId))}" />
+                    </h:column>
+                </h:dataTable>
+                <h:commandButton value="Efetivar venda" action="#{jsfVenda.concluirVenda()}" onclick="return confirm('Confirma conclusão da venda?');"/>
+            </h:form>
         </ui:define>
     </ui:composition>
-
 </html>
 

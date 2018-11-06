@@ -6,28 +6,30 @@
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="../layout_operacoes.xhtml">
         <ui:define name="content">
+            <h1>Listar todas as Vendas</h1>
             <h:form>
                 <p:messages id="messages" showDetail="true" closable="true">
                     <p:autoUpdate />
                 </p:messages>
-                            <h1>Listar Todos os Ceps</h1>
-
-                    <h:dataTable value="#{jsfCep.listaTodos()}" var="cep">
+                <h:dataTable value="#{jsfVenda.listaTodos()}" var="venda">
                     <h:column>
-                        <h:outputText value="#{cep.cep}" />
-                    </h:column>  
-                    <h:column>
-                            <h:outputText value="#{cep.cidadeId.nome}" />
-                    </h:column>  
-                       <h:column>
-                           <p:commandButton value="remover" action="#{jsfCep.remove(cep)}" onclick="return confirm('Confirma exclusao?');" ajax="false"/> 
+                        <h:outputText value="#{venda.numero}" />
                     </h:column>
                     <h:column>
-                        <p:commandButton value="editar" action="#{jsfCep.update(cep)}" ajax="false"/> 
+                        <p:calendar value="#{venda.emissao}" pattern="dd/MM/yyyy"/>
+                    </h:column>
+                    <h:column>
+                        <h:dataTable value="#{venda.itensVendaCollection}" var="itm">
+                            <h:column>
+                                <h:outputText value="#{itm.produtoId.descricao}" />
+                            </h:column>
+                            <h:column>
+                                <h:outputText value="#{itm.quantidade}" />
+                            </h:column>
+                        </h:dataTable>
                     </h:column>
                 </h:dataTable>
             </h:form>
-
         </ui:define>
     </ui:composition>
 </html>

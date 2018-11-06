@@ -5,8 +5,11 @@
  */
 package Model;
 
+import Crud.CrudProduto;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.UUID;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,8 +43,8 @@ public class ItensVenda implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Column(name = "id")
-    private String id;
+    @Column(name = "id", columnDefinition = "uuid")
+    private UUID id;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @NotNull
@@ -69,11 +72,11 @@ public class ItensVenda implements Serializable {
     public ItensVenda() {
     }
 
-    public ItensVenda(String id) {
+    public ItensVenda(UUID id) {
         this.id = id;
     }
 
-    public ItensVenda(String id, BigDecimal quantidade, BigDecimal valorUnitario, BigDecimal valorTotal, BigDecimal desconto) {
+    public ItensVenda(UUID id, BigDecimal quantidade, BigDecimal valorUnitario, BigDecimal valorTotal, BigDecimal desconto) {
         this.id = id;
         this.quantidade = quantidade;
         this.valorUnitario = valorUnitario;
@@ -81,11 +84,11 @@ public class ItensVenda implements Serializable {
         this.desconto = desconto;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -125,8 +128,15 @@ public class ItensVenda implements Serializable {
         return produtoId;
     }
 
-    public void setProdutoId(Produto produtoId) {
-        this.produtoId = produtoId;
+    public void setProdutoId(String produtoId) {
+        List<Produto> listaProduto;
+        listaProduto = new CrudProduto().getAll();
+        for(int i = 0; i < listaProduto.size(); i++){
+            if(listaProduto.get(i).getId().toString().equals(produtoId)){
+                 this.produtoId = listaProduto.get(i);
+                continue;
+            }
+        }
     }
 
     public Venda getVendaId() {

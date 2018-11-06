@@ -6,7 +6,6 @@
 package web;
 
 import Crud.CrudCliente;
-import Model.Cep;
 import Model.Cliente;
 import Utilitarios.Util;
 import java.util.List;
@@ -36,6 +35,17 @@ public class JsfCliente {
     private String cpf;
     private String email;
     private String cepId;
+    CrudCliente c = new CrudCliente();
+    public static String idCliente;
+
+    public String getIdAux() {
+        return idAux;
+    }
+
+    public void setIdAux(String idAux) {
+        this.idAux = idAux;
+    }
+    private String idAux;
 
     public JsfCliente() {
     }
@@ -155,20 +165,85 @@ public class JsfCliente {
             return null;
         }
 
-        return "operacoes/cliente/listaTodos.xhtml";
+        return "operacoes/cliente/listarTodos.xhtml";
     }
 
-    public void update(Cliente cliente) {
-
+    public String update(Cliente cliente) {
+        this.id = cliente.getId();
+        this.idAux = cliente.getId().toString();
+        this.bairro = cliente.getBairro();
+        this.complemento = cliente.getComplemento();
+        this.cpf = cliente.getCpf();
+        this.email = cliente.getEmail();
+        this.endereco = cliente.getEndereco();
+        this.fone = cliente.getFone();
+        this.nome = cliente.getNome();
+        this.numero = cliente.getNumero();
+        this.cepId = cliente.getCepId().toString();
+        idCliente = cliente.getId().toString();
+        return "editar.xhtml";
     }
 
     public void remove(Cliente cliente) {
+        Exception e = new CrudCliente().remove(cliente);
+        if (e == null) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!!", "Registro excluido com sucesso");
+            FacesContext.getCurrentInstance().addMessage(null, message);
 
+        } else {
+            String msg = e.getMessage();
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Informe o administrador do erro: " + msg);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
     }
 
-    
-    public List<Cliente> listaTodos(){
-        CrudCliente c = new CrudCliente();
+    public String merge() {
+        Cliente cliente = null;
+        List<Cliente> lista;
+        lista = new CrudCliente().getAll();
+
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).getId().toString().equals(idCliente)) {
+                cliente = new CrudCliente().find(lista.get(i).getId());
+                cliente.setId(lista.get(i).getId());
+                cliente.setNome(nome);
+                cliente.setBairro(bairro);
+                cliente.setComplemento(complemento);
+                cliente.setCpf(cpf);
+                cliente.setEmail(email);
+                cliente.setEndereco(endereco);
+                cliente.setFone(fone);
+                cliente.setNumero(numero);
+                cliente.setCepId(cepId);
+                continue;
+            }
+        }
+        /**/
+        Exception e = new CrudCliente().merge(cliente);
+
+        if (e == null) {
+            this.setId(id);
+            this.setBairro("");
+            this.setCepId("");
+            this.setComplemento("");
+            this.setCpf("");
+            this.setEmail("");
+            this.setEndereco("");
+            this.setFone("");
+            this.setNome("");
+            this.setNumero("");
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!!", "Registro alterado com sucesso");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+
+        } else {
+            String msg = e.getMessage();
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Informe o administrador do erro: " + msg);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+        return "/operacoes/cliente/listarTodos.xhtml";
+    }
+
+    public List<Cliente> listaTodos() {
         List<Cliente> lst;
         lst = c.getAll();
         return lst;
