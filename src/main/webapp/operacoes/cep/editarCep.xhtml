@@ -9,20 +9,20 @@
 
     <ui:composition template="../layout_operacoes.xhtml">
         <ui:define name="content">
-            <h1>Editar Produto</h1>
+            <h1>Editar Cep</h1>
             <b:form>
                 <b:formGroup>
                     <p:messages id="messages" showDetail="true" closable="true">
                         <p:autoUpdate />
                     </p:messages>
                     
-                    <b:inputText value="#{jsfCep.idAux}" label="Id:" col-md="3" />
-                    <b:inputText value="#{jsfCep.cep}" label="Id:" col-md="3" />
-                     Cidade:<br></br>                
-                <p:selectOneMenu value="#{jsfCep.idCidadeAux}" required="true" requiredMessage="Selecione uma opção no menu teste 1    ">
-                    <f:selectItem  itemLabel="Selecione um..."/>
-                    <f:selectItems value="#{jsfCidade.listaTodos()}" var="cidade" itemValue="#{cidade.id}" itemLabel="#{cidade.nome}"/>
-                </p:selectOneMenu>
+                    <b:inputText value="#{jsfCep.idAux}" label="Id:" col-md="3" />                    
+                    <b:inputText value="#{jsfCep.cep}" label="Cep:" col-md="3" />
+                    Cidade:<br></br>                
+                    <p:selectOneMenu value="#{jsfCep.idCidadeAux}" required="true" requiredMessage="Selecione uma opção no menu teste 1    ">
+                        <f:selectItem  itemLabel="Selecione um..."/>
+                        <f:selectItems value="#{jsfCidade.listaTodos()}" var="cidade" itemValue="#{cidade.id}" itemLabel="#{cidade.nome}"/>
+                    </p:selectOneMenu>
                     <b:commandButton value="Salvar Registro" icon-awesome="save" action="#{jsfCep.merge()}"  ajax="false" col-md="2" /> 
                 </b:formGroup>
             </b:form>
