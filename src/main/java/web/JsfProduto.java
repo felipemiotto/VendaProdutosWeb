@@ -193,7 +193,7 @@ public class JsfProduto {
     }
 
     public String merge() {
-         Produto produto = null;
+        Produto produto = null;
         List<Produto> lista;
         lista = new CrudProduto().getAll();
 

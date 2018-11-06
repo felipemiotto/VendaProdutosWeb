@@ -5,38 +5,43 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-
     <ui:composition template="../layout_operacoes.xhtml">
         <ui:define name="content">
-            <h1>Modificar Estado</h1>
+            <h1>Editar Estado</h1>
             <h:form>
-                <p:messages id="messages" showDetail="true" closable="true">
-                    <p:autoUpdate />
-                </p:messages>
-                
-                ID:<br></br>
-                         
-                <p:inputText value="#{jsfEstado.nome}" />
-                <br></br>
-                                
-                Codigo:<br></br>
-                <p:inputText value="#{jsfEstado.sigla}" />
-                <br></br>
-                
-                Nome:<br></br>
-                <p:inputText value="#{jsfPais.nome}" />
-                <br></br>
-                
-                <p:selectOneMenu value="#{jsfEstado.idPais}" required="true" requiredMessage="Selecione uma opção no menu teste 1    ">
+
+                <p:inputText id="codigo" value="#{jsfEstado.idAux}" ></p:inputText><br></br>
+                Nome: <br></br>
+                <p:inputText  id="nome" value="#{jsfEstado.nome}" required="true" 
+                              requiredMessage="Você precisa informar o nome do estado"
+                              validatorMessage="O nome do estado deve ter de 4 a 50 caracteres">
+                    <f:validateLength maximum="50" minimum="4"/>
+                    <p:clientValidator event="keyup"/>
+                </p:inputText>  
+                <p:message for="nome"/> 
+                Sigla: <br></br>
+                <p:inputText id="sigla" value="#{jsfEstado.sigla}" required="true" 
+                             requiredMessage="Você precisa informar a sigla do estado"
+                             validatorMessage="A sigla deve ser composta por apenas dois caracteres">
+                    <f:validateLength maximum="2" minimum="2"/>
+                    <p:clientValidator event="keyup"/>
+                </p:inputText>  
+                <p:message for="sigla"/>
+                País:<br></br>
+
+                <p:selectOneMenu id="pais" value="#{jsfEstado.idAuxPais}" required="true" requiredMessage="Selecione um país">
                     <f:selectItem  itemLabel="Selecione um..."/>
-                    <f:selectItems value="#{jsfPais.listaTodos()}" var="pais" itemValue="#{pais.id}" itemLabel="#{pais.nome}"/>
+                    <f:selectItems value="#{jsfPais.all}" var="pais" itemValue="#{pais.id}" itemLabel="#{pais.nome}"/>
                 </p:selectOneMenu>
-      
                 <br></br>
-                <p:commandButton value="Salvar Registro" action="#{jsfPais.merge()}"  ajax="false"/> 
-                
+                <br></br>
+                <p:commandButton value="Alterar Registro" action="#{jsfEstado.merge()}"  ajax="false"/> 
             </h:form>
+            <p:messages id="messages" showDetail="true" closable="true">
+                <p:autoUpdate />
+            </p:messages>              
         </ui:define>
     </ui:composition>
+
 </html>
 

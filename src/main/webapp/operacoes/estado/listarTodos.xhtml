@@ -27,11 +27,12 @@
                     <h:column>
                         <h:outputText value="#{estado.paisId.nome}" />
                     </h:column>
+
                     <h:column>
                         <p:commandButton value="remover" action="#{jsfEstado.remove(estado)}" onclick="return confirm('Confirma exclusao?');" ajax="false"/> 
                     </h:column>
                     <h:column>
-                        <p:commandButton value="editar"/> 
+                        <p:commandButton value="editar" action="#{jsfEstado.update(estado)}" ajax="false"/> 
                     </h:column>
                 </h:dataTable>
             </h:form>

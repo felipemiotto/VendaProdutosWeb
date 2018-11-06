@@ -44,42 +44,6 @@
                         <p:menuitem value="Produtos"  icon="ui-icon-document-b"   url="/faces/operacoes/produto/listarTodos.xhtml" />
                         <p:menuitem value="Clientes"  icon="ui-icon-document-b"   url="/faces/operacoes/cliente/listarTodos.xhtml" />
                     </p:submenu>
-                    <p:submenu label="Buscar?" icon="ui-icon-document">
-                        <p:submenu label="Cliente" icon="ui-icon-contact" rendered="true">
-                            <p:menuitem value="Buscar" icon="ui-icon-search" url="/faces/operacoes/cliente/listselect.xhtml"/>
-                        </p:submenu>
-
-                        <p:submenu label="Documento" icon="ui-icon-contact" rendered="true">
-                            <p:menuitem value="Buscar" icon="ui-icon-search" url="/faces/operacoes/documento/listselect.xhtml"/>
-                        </p:submenu>
-
-                        <p:submenu label="Cep" icon="ui-icon-contact" rendered="true">
-                            <p:menuitem value="Buscar" icon="ui-icon-search" url="/faces/operacoes/cep/listselect.xhtml"/>
-                        </p:submenu>
-
-                        <p:submenu label="Cidade" icon="ui-icon-contact" rendered="true">
-                            <p:menuitem value="Buscar" icon="ui-icon-search" url="/faces/operacoes/venda/listselect.xhtml"/>
-                        </p:submenu>
-
-                        <p:submenu label="Estado" icon="ui-icon-contact" rendered="true">
-                            <p:menuitem value="Buscar" icon="ui-icon-search" url="/faces/operacoes/venda/listselect.xhtml"/>
-                        </p:submenu>
-
-                        <p:submenu label="Pais" icon="ui-icon-contact" rendered="true">
-                            <p:menuitem value="Buscar" icon="ui-icon-search" url="/faces/operacoes/pais/adicionar.xhtml"/>
-
-                        </p:submenu>
-                        
-                        <p:submenu label="Grupo" icon="ui-icon-contact" rendered="true">
-                            <p:menuitem value="Buscar" icon="ui-icon-search" url="/faces/operacoes/grupo/listselect.xhtml"/>
-                        </p:submenu>
-                        
-                        <p:submenu label="Produto" icon="ui-icon-contact" rendered="true">
-                            <p:menuitem value="Buscar" icon="ui-icon-search" url="/faces/operacoes/produto/listselect.xhtml"/>
-                        </p:submenu>
-
-                        <p:separator />
-                    </p:submenu>
                     <f:facet name="options">
                         <p:inputText style="margin-right:10px" placeholder="Search"/>
                         <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" onclick="javascript:alert('procedimento de logout');"/>                  

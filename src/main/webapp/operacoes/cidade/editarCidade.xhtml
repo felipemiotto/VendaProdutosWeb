@@ -9,7 +9,8 @@
         <ui:define name="content">
             <h1>Cadastrar Cidade</h1>
             <h:form>
-
+                UUID Cidade:<br></br>
+                <p:inputText id="UUID" value="#{jsfCidade.idAux}"></p:inputText><br></br>
                 Nome: <br></br>
                 <p:inputText id="nome" value="#{jsfCidade.nome}" required="true"
                              requiredMessage="Você precisa informar o nome da cidade."
@@ -27,7 +28,7 @@
                 </p:selectOneMenu>
                 <br></br>
                 <br></br>
-                <p:commandButton value="Salvar Registro" action="#{jsfCidade.persist}"  ajax="false"/> 
+                <p:commandButton value="Salvar Registro" action="#{jsfCidade.merge()}"  ajax="false"/> 
             </h:form>
             <p:messages id="messages" showDetail="true" closable="true">
                 <p:autoUpdate />
