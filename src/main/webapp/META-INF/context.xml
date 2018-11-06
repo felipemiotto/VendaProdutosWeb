@@ -1,2 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/vendaprodutosweb"/>
+<Context path="/vendaprodutosweb">
+    <Resource auth="Container" driverClassName="org.postgresql.Driver" maxActive="20" maxIdle="10" maxWait="-1" name="vendasprodutoweb" password="230992" type="javax.sql.DataSource" url="jdbc:postgresql://localhost:5432/" username="postgres"/>
+</Context>

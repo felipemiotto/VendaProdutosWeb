@@ -5,12 +5,11 @@
  */
 package Crud;
 
-import Model.Cidade;
-import Model.Estado;
-import Model.Pais;
+import Model.Grupo;
+import Model.Produto;
 import Utilitarios.Util;
+import java.math.BigDecimal;
 import java.util.List;
-import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -21,11 +20,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author felip
+ * @author luizf
  */
-public class CrudCidadeTest {
+public class CrudProdutoTest {
 
-    public CrudCidadeTest() {
+    public CrudProdutoTest() {
     }
 
     @BeforeClass
@@ -45,21 +44,25 @@ public class CrudCidadeTest {
     }
 
     /**
-     * Test of getEntityManager method, of class CrudCidade.
+     * Test of SelectByDescricao method, of class CrudProduto.
      */
     @Test
-    public void testGravaCidade() {
-        Cidade cidade = new Cidade();
-        CrudCidade crudCidade = new CrudCidade();
-        CrudEstado crud = new CrudEstado();
-        List<Estado> lst;
-        lst = crud.getAll();
+    public void testGravaProduto() {
+        Produto produto = new Produto();
+        CrudProduto crudProduto = new CrudProduto();
+        CrudGrupoProduto crudGrupoProduto = new CrudGrupoProduto();
+        List<Grupo> lst;
+        lst = crudGrupoProduto.getAll();
         boolean resposta;
-        cidade.setId(Util.geraId());
-        cidade.setNome("Teste Nome Cidade");
-        cidade.setEstadoId(lst.get(0).getId().toString());
+        produto.setId(Util.geraId());
+        produto.setCusto(new BigDecimal(1));
+        produto.setDescricao("Teste Produto");
+        produto.setGrupoId(lst.get(0).getId().toString());
+        produto.setPeso(new BigDecimal(1));
+        produto.setPreco(new BigDecimal(1));
+        produto.setUnidade("TT");
         Exception insert;
-        insert = crudCidade.persist(cidade);
+        insert = crudProduto.persist(produto);
         if (insert == null) {
             JOptionPane.showMessageDialog(null, "Dados Gravados Com Sucesso!!");
             resposta = true;
@@ -69,4 +72,5 @@ public class CrudCidadeTest {
         }
         assertEquals(true, resposta);
     }
+
 }

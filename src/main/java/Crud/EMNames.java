@@ -26,10 +26,10 @@ public class EMNames {
         Map<String, String> properties = new HashMap<>();
 
         if (heroku_db == null) { //caso nao tenhamos a variavel de ambiente       
-            properties.put("javax.persistence.jdbc.url", "jdbc:postgresql://localhost:5432/" + Util.banco);
-            properties.put("javax.persistence.jdbc.user", Util.usuario);
+            properties.put("javax.persistence.jdbc.url", "jdbc:postgresql://localhost:5432/vendasprodutoweb");
+            properties.put("javax.persistence.jdbc.user", "postgres");
             properties.put("javax.persistence.jdbc.driver", "org.postgresql.Driver");
-            properties.put("javax.persistence.jdbc.password", Util.senha);
+            properties.put("javax.persistence.jdbc.password", "230992");
         } else { //se a variavel de ambiente foi criada, indica que o projeto está alocado no heroku
             //   properties.put("javax.persistence.jdbc.url", "jdbc:postgresql://ec2-184-73-202-79.compute-1.amazonaws.com:5432/d27dm10t2iscbc?sslmode=require");
             //   properties.put("javax.persistence.jdbc.user", "okdvfyabceaqmz");

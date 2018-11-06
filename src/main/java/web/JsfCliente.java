@@ -144,7 +144,7 @@ public class JsfCliente {
         cliente.setFone(fone);
         cliente.setNumero(numero);
         cliente.setCepId(cepId);
-        Exception insert = new Crud.CrudProduto().persist(cliente);
+        Exception insert = new Crud.CrudCliente().persist(cliente);
         if (insert == null) {
             this.setNome("");
             this.setBairro("");

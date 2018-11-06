@@ -7,6 +7,7 @@ package Crud;
 
 import Model.Cidade;
 import Model.Cliente;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
@@ -15,7 +16,8 @@ import javax.persistence.Persistence;
  * @author luizf
  */
 public class CrudCliente extends AbstractCrud<Cliente> {
-     private EntityManager em;
+
+    private EntityManager em;
 
     public CrudCliente() {
         super(Cliente.class);
@@ -26,6 +28,17 @@ public class CrudCliente extends AbstractCrud<Cliente> {
         if (em == null) {
             em = Persistence.createEntityManagerFactory(EMNames.EMN1, EMNames.getEMN1Props()).createEntityManager();
         }
-        return em;      
+        return em;
+    }
+
+    public List<Cliente> SelectByNome(String nome) {
+        List<Cliente> lista;
+        try {
+            lista = getEntityManager().createNamedQuery("Cliente.findAll").getResultList();
+            return lista;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }

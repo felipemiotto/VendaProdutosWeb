@@ -5,9 +5,7 @@
  */
 package Crud;
 
-import Model.Cidade;
-import Model.Estado;
-import Model.Pais;
+import Model.Documento;
 import Utilitarios.Util;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -21,11 +19,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author felip
+ * @author luizf
  */
-public class CrudCidadeTest {
+public class CrudDocumentoTest {
 
-    public CrudCidadeTest() {
+    public CrudDocumentoTest() {
     }
 
     @BeforeClass
@@ -45,21 +43,18 @@ public class CrudCidadeTest {
     }
 
     /**
-     * Test of getEntityManager method, of class CrudCidade.
+     * Test of getEntityManager method, of class CrudDocumento.
      */
     @Test
-    public void testGravaCidade() {
-        Cidade cidade = new Cidade();
-        CrudCidade crudCidade = new CrudCidade();
-        CrudEstado crud = new CrudEstado();
-        List<Estado> lst;
-        lst = crud.getAll();
-        boolean resposta;
-        cidade.setId(Util.geraId());
-        cidade.setNome("Teste Nome Cidade");
-        cidade.setEstadoId(lst.get(0).getId().toString());
+    public void testGravaDocumento() {
+        CrudDocumento crudDocumento = new CrudDocumento();
+        Documento documento = new Documento();
+        documento.setId(Util.geraId());
+        documento.setCodigo("000");
+        documento.setDescricao("Teste Documento");
         Exception insert;
-        insert = crudCidade.persist(cidade);
+        insert = crudDocumento.persist(documento);
+        boolean resposta;
         if (insert == null) {
             JOptionPane.showMessageDialog(null, "Dados Gravados Com Sucesso!!");
             resposta = true;
@@ -69,4 +64,5 @@ public class CrudCidadeTest {
         }
         assertEquals(true, resposta);
     }
+
 }

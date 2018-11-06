@@ -5,11 +5,8 @@
  */
 package Crud;
 
-import Model.Cidade;
-import Model.Estado;
-import Model.Pais;
+import Model.Grupo;
 import Utilitarios.Util;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 import org.junit.After;
@@ -21,45 +18,41 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author felip
+ * @author luizf
  */
-public class CrudCidadeTest {
-
-    public CrudCidadeTest() {
+public class CrudGrupoProdutoTest {
+    
+    public CrudGrupoProdutoTest() {
     }
-
+    
     @BeforeClass
     public static void setUpClass() {
     }
-
+    
     @AfterClass
     public static void tearDownClass() {
     }
-
+    
     @Before
     public void setUp() {
     }
-
+    
     @After
     public void tearDown() {
     }
-
     /**
-     * Test of getEntityManager method, of class CrudCidade.
+     * Test of SelectByNome_codigo method, of class CrudGrupoProduto.
      */
     @Test
-    public void testGravaCidade() {
-        Cidade cidade = new Cidade();
-        CrudCidade crudCidade = new CrudCidade();
-        CrudEstado crud = new CrudEstado();
-        List<Estado> lst;
-        lst = crud.getAll();
-        boolean resposta;
-        cidade.setId(Util.geraId());
-        cidade.setNome("Teste Nome Cidade");
-        cidade.setEstadoId(lst.get(0).getId().toString());
+    public void testGravaGrupoProduto() {
+        CrudGrupoProduto crudGrupoProduto = new CrudGrupoProduto();
+        Grupo grupo = new Grupo();
+        grupo.setId(Util.geraId());
+        grupo.setCodigo("000");
+        grupo.setNome("Teste Grupo");
         Exception insert;
-        insert = crudCidade.persist(cidade);
+        insert = crudGrupoProduto.persist(grupo);
+        boolean resposta;
         if (insert == null) {
             JOptionPane.showMessageDialog(null, "Dados Gravados Com Sucesso!!");
             resposta = true;

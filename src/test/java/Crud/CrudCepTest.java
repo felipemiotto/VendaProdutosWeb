@@ -5,12 +5,10 @@
  */
 package Crud;
 
+import Model.Cep;
 import Model.Cidade;
-import Model.Estado;
-import Model.Pais;
 import Utilitarios.Util;
 import java.util.List;
-import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -21,11 +19,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author felip
+ * @author luizf
  */
-public class CrudCidadeTest {
+public class CrudCepTest {
 
-    public CrudCidadeTest() {
+    public CrudCepTest() {
     }
 
     @BeforeClass
@@ -45,21 +43,21 @@ public class CrudCidadeTest {
     }
 
     /**
-     * Test of getEntityManager method, of class CrudCidade.
+     * Test of SelectByNome method, of class CrudCep.
      */
     @Test
-    public void testGravaCidade() {
-        Cidade cidade = new Cidade();
+    public void testGravaCep() {
+        Cep cep = new Cep();
+        CrudCep crudCep = new CrudCep();
         CrudCidade crudCidade = new CrudCidade();
-        CrudEstado crud = new CrudEstado();
-        List<Estado> lst;
-        lst = crud.getAll();
+        List<Cidade> lst;
         boolean resposta;
-        cidade.setId(Util.geraId());
-        cidade.setNome("Teste Nome Cidade");
-        cidade.setEstadoId(lst.get(0).getId().toString());
+        cep.setId(Util.geraId());
+        cep.setCep("00000000");
+        lst = crudCidade.getAll();
+        cep.setCidadeId(lst.get(0).getId().toString());
         Exception insert;
-        insert = crudCidade.persist(cidade);
+        insert = crudCep.persist(cep);
         if (insert == null) {
             JOptionPane.showMessageDialog(null, "Dados Gravados Com Sucesso!!");
             resposta = true;
