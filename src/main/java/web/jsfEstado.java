@@ -33,11 +33,57 @@ public class jsfEstado {
     private String nome;
     private String sigla;
     private Pais pais;
-    private String paisId;
+    private String idAux;
+    private String idAuxPais;
     
     CrudEstado crudEstado = new CrudEstado();
     PostgreUuidConverter converter=new PostgreUuidConverter();
+       
     
+    public String merge() {
+        Estado estado = null;
+        List<Estado> lista;
+        lista = new CrudEstado().getAll();
+
+
+        for (int i = 0; i < lista.size(); i++) {                
+
+            if (lista.get(i).getId().toString().equals(idAux)) {           
+                estado = new CrudEstado().find(lista.get(i).getId());
+                estado.setId(lista.get(i).getId());
+                estado.setNome(nome);
+                estado.setSigla(sigla);
+                estado.setPaisId(idAuxPais);
+            }
+        }
+        Exception e = new CrudEstado().merge(estado);
+        if (e == null) {
+            this.setId(null);
+            this.setNome("");
+            this.setSigla("");
+            this.setIdAux("");
+            this.setIdAuxPais(idAuxPais);
+            
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!!", "Registro alterado com sucesso");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+
+        } else {
+            String msg = e.getMessage();
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Informe o administrador do erro: " + msg);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+        return "/operacoes/estado/listarTodos.xhtml";
+    }
+
+    public String update(Model.Estado estado) {
+        this.idAux = estado.getId().toString();
+        this.nome = estado.getNome();
+        this.sigla = estado.getSigla();
+        this.pais = estado.getPaisId();
+        this.idAuxPais = estado.getPaisId().getId().toString();
+        return "editarEstado.xhtml";
+    }
+
     public String persist() {
                         
         
@@ -49,12 +95,12 @@ public class jsfEstado {
         estado.setId(converter.convertToEntityAttribute(id));
         estado.setNome(nome);
         estado.setSigla(sigla);
-        estado.setPaisId(paisId);
+        estado.setPaisId(idAux);
      
         Exception insert = new Crud.CrudEstado().persist(estado);
         if(insert == null){
             this.setNome("");
-            this.setIdPais(null);
+            this.setIdAux("");
             this.setSigla("");
             
            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!!", "Registro adicionado com sucesso");
@@ -88,17 +134,27 @@ public class jsfEstado {
         lst = crudEstado.getAll();
         return lst;
     }
+
+    public String getIdAux() {
+        return idAux;
+    }
+
+    public void setIdAux(String idAux) {
+        this.idAux = idAux;
+    }
+
+    public PostgreUuidConverter getConverter() {
+        return converter;
+    }
+
+    public void setConverter(PostgreUuidConverter converter) {
+        this.converter = converter;
+    }
     
     public jsfEstado() {
     }
     
-    public String getPaisId() {
-        return paisId;
-    }
 
-    public void setPaisId(String paisId) {
-        this.paisId = paisId;
-    }
 
 
     public UUID getId() {
@@ -142,16 +198,12 @@ public class jsfEstado {
         this.pais = pais;
     }
 
-    public String getIdPais() {
-        return paisId;
+    public String getIdAuxPais() {
+        return idAuxPais;
     }
 
-    public void setIdPais(String paisId) {
-        this.paisId = paisId;
+    public void setIdAuxPais(String idAuxPais) {
+        this.idAuxPais = idAuxPais;
     }
-
-
-    
-    
     
 }

@@ -31,11 +31,62 @@ public class jsfCidade {
     private UUID id;
     private String nome;
     private Estado estado;
-    private String estadoId;
+    private String idAux;
+    private String idAuxEstado;
     
     Crud.CrudCidade crudCidade = new CrudCidade();
     PostgreUuidConverter converter=new PostgreUuidConverter();
 
+    
+    public String merge() {
+        Cidade cidade = null;
+        List<Cidade> lista;
+        lista = new CrudCidade().getAll();
+        
+        System.out.println(" ------------------------------- idAux do merge cidade antes do loop = " + idAux);
+
+        for (int i = 0; i < lista.size(); i++) {                
+        System.out.println(" ------------------------------- idAux do merge cidade no loop = " + idAux);
+
+            if (lista.get(i).getId().toString().equals(idAux)) {  
+                        System.out.println(" ------------------------------- idAux do merge no if que nao entra= " + idAux);
+        System.out.println(" ------------------------------- mas entrou com o i = " + i);
+        System.out.println(" ------------------------------- lista.get(i).getId() = " + lista.get(i).getId());
+        System.out.println(" ------------------------------- idAuxEstado = " + idAuxEstado);
+        System.out.println(" ------------------------------- nome = " + nome);
+
+                cidade = new CrudCidade().find(lista.get(i).getId());
+                cidade.setId(lista.get(i).getId());
+                cidade.setNome(nome);
+                cidade.setEstadoId(idAuxEstado);
+            }
+        }
+                System.out.println(" ------------------------------- idAux do merge cidade depois do loop = " + idAux);
+
+        Exception e = new CrudCidade().merge(cidade);
+        if (e == null) {
+            this.setId(null);
+            this.setNome("");           
+            this.setIdAuxEstado(idAuxEstado);
+            
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!!", "Registro alterado com sucesso");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+
+        } else {
+            String msg = e.getMessage();
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Informe o administrador do erro: " + msg);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+        return "/operacoes/cidade/listarTodos.xhtml";
+    }
+
+    public String update(Model.Cidade cidade) {
+        this.idAux = cidade.getId().toString();
+        this.nome = cidade.getNome();
+        this.idAuxEstado = cidade.getEstadoId().getId().toString();
+        return "editarCidade.xhtml";
+    }
+    
     public String persist() {
                         
         Model.Cidade cidade;
@@ -45,13 +96,13 @@ public class jsfCidade {
         
         cidade.setNome(nome);
         cidade.setId(id);
-        cidade.setEstadoId(estadoId);
+        cidade.setEstadoId(idAuxEstado);
              
         Exception insert = new Crud.CrudProduto().persist(cidade);
         
         if(insert == null){
             this.setNome("");
-            this.setEstadoId(null);
+            this.setIdAuxEstado(null);
             
            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!!", "Registro adicionado com sucesso");
            FacesContext.getCurrentInstance().addMessage(null, message);
@@ -111,13 +162,7 @@ public class jsfCidade {
         this.estado = estado;
     }
 
-    public String getEstadoId() {
-        return estadoId;
-    }
 
-    public void setEstadoId(String estadoId) {
-        this.estadoId = estadoId;
-    }
 
     public PostgreUuidConverter getConverter() {
         return converter;
@@ -134,6 +179,22 @@ public class jsfCidade {
 
     public void setCrudCidade(CrudCidade crudCidade) {
         this.crudCidade = crudCidade;
+    }
+
+    public String getIdAux() {
+        return idAux;
+    }
+
+    public void setIdAux(String idAux) {
+        this.idAux = idAux;
+    }
+
+    public String getIdAuxEstado() {
+        return idAuxEstado;
+    }
+
+    public void setIdAuxEstado(String idAuxEstado) {
+        this.idAuxEstado = idAuxEstado;
     }
 
     

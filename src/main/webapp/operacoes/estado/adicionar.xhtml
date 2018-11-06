@@ -28,7 +28,7 @@
                 <p:message for="sigla"/>
                 País:<br></br>
 
-                <p:selectOneMenu id="pais" value="#{jsfEstado.idPais}" required="true" requiredMessage="Selecione um país">
+                <p:selectOneMenu id="pais" value="#{jsfEstado.idAux}" required="true" requiredMessage="Selecione um país">
                     <f:selectItem  itemLabel="Selecione um..."/>
                     <f:selectItems value="#{jsfPais.all}" var="pais" itemValue="#{pais.id}" itemLabel="#{pais.nome}"/>
                 </p:selectOneMenu>

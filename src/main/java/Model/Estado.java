@@ -112,7 +112,7 @@ public class Estado implements Serializable {
         listaPaises = new CrudPais().getAll();
         for(int i = 0; i < listaPaises.size(); i++){
             if(listaPaises.get(i).getId().toString().equals(paisId)){
-                 this.paisId = listaPaises.get(i);
+                this.paisId = listaPaises.get(i);
                 continue;
             }
         }
