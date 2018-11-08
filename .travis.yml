@@ -15,7 +15,6 @@ jdk:
 - oraclejdk8
 script:
 - mvn clean verify -DskipTests=false -DskipITs=false -DskipSTs=false
-- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
 deploy:
   provider: heroku
   api_key:
