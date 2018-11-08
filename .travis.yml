@@ -10,8 +10,8 @@ addons:
   sonarcloud:
     organization: "felipemiotto-github"
 before_script:
-- psql -c 'create database vedasprodutoweb;' -U postgres
-- psql -U postgres -d vedasprodutoweb -f src/main/java/Banco/scriptTabelas.sql                 
+- psql -c 'create database vendasprodutoweb;' -U postgres
+- psql -U postgres -d vendasprodutoweb -f src/main/java/Banco/scriptTabelas.sql                 
 
 language: java
 jdk:
