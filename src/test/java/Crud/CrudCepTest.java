@@ -24,6 +24,8 @@ import static org.junit.Assert.*;
 public class CrudCepTest {
 
     public CrudCepTest() {
+        CrudCidadeTest c  = new CrudCidadeTest();
+        c.testGravaCidade();
     }
 
     @BeforeClass

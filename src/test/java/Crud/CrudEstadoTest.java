@@ -25,6 +25,8 @@ import static org.junit.Assert.*;
 public class CrudEstadoTest {
     
     public CrudEstadoTest() {
+        CrudPaisTest c = new CrudPaisTest();
+        c.testGravaPais();
     }
     
     @BeforeClass
@@ -47,7 +49,7 @@ public class CrudEstadoTest {
      * Test of getEntityManager method, of class CrudEstado.
      */
     @Test
-    public void testGravaCidade() {
+    public void testGravaEstado() {
         boolean resposta;
         CrudPais crud = new CrudPais();
         CrudEstado crudEstado = new CrudEstado();

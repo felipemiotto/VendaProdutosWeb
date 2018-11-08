@@ -7,8 +7,6 @@ package Crud;
 
 import Model.Documento;
 import Utilitarios.Util;
-import java.util.List;
-import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 import org.junit.After;
 import org.junit.AfterClass;

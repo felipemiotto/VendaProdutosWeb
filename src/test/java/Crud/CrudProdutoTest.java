@@ -25,6 +25,8 @@ import static org.junit.Assert.*;
 public class CrudProdutoTest {
 
     public CrudProdutoTest() {
+        CrudGrupoProdutoTest p = new CrudGrupoProdutoTest();
+        p.testGravaGrupoProduto();
     }
 
     @BeforeClass

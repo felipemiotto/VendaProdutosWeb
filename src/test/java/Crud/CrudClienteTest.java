@@ -20,6 +20,8 @@ import static org.junit.Assert.*;
 public class CrudClienteTest {
 
     public CrudClienteTest() {
+        CrudCepTest cep = new CrudCepTest();
+        cep.testGravaCep();
     }
 
       /**

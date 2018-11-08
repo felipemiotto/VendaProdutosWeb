@@ -26,6 +26,8 @@ import static org.junit.Assert.*;
 public class CrudCidadeTest {
 
     public CrudCidadeTest() {
+        CrudEstadoTest e = new CrudEstadoTest();
+        e.testGravaEstado();
     }
 
     @BeforeClass
