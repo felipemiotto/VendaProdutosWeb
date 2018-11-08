@@ -66,10 +66,10 @@ public class CrudProdutoTest {
         Exception insert;
         insert = crudProduto.persist(produto);
         if (insert == null) {
-            JOptionPane.showMessageDialog(null, "Dados Gravados Com Sucesso!!");
+            System.out.println("Dados Gravados Com Sucesso!!");
             resposta = true;
         } else {
-            JOptionPane.showMessageDialog(null, "Erroo!!");
+            System.out.println("Erroo!!");
             resposta = false;
         }
         assertEquals(true, resposta);
