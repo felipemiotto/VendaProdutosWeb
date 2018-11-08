@@ -1,5 +1,5 @@
 --CRIA O BANCO
-CREATE DATABASE vedasprodutoweb
+CREATE DATABASE vendasprodutoweb
     WITH 
     OWNER = postgres
     ENCODING = 'UTF8'
