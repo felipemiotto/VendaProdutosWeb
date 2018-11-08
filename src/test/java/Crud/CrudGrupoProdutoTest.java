@@ -53,11 +53,11 @@ public class CrudGrupoProdutoTest {
         Exception insert;
         insert = crudGrupoProduto.persist(grupo);
         boolean resposta;
-        if (insert == null) {
-            JOptionPane.showMessageDialog(null, "Dados Gravados Com Sucesso!!");
+       if (insert == null) {
+            System.out.println("Dados Gravados Com Sucesso!!");
             resposta = true;
         } else {
-            JOptionPane.showMessageDialog(null, "Erroo!!");
+            System.out.println("Erroo!!");
             resposta = false;
         }
         assertEquals(true, resposta);
