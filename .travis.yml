@@ -15,4 +15,10 @@ jdk:
 - oraclejdk8
 script:
 - mvn clean verify -DskipTests=false -DskipITs=false -DskipSTs=false
-
+deploy:
+  provider: heroku
+  api_key:
+    secure: Cam0G7WalGZ49MpCyMzSkUstttYtjJCXRxG2xF3zHEJNSMMh2cAh1j1sLPdEk46peGeaAQlugp71lKjyU+iTOUUB/6vni95ys96HaA1v8vIjykjuYQYZ4XEusiDf8iPRuoA2LJsjWc3PRSxMEXvCJyBamUg3jo5Vcs+f+eCLyUo3Y37J8ZV1/BWYJlFvnQ41spDoFVjQXLRyarjq8Ffb26pdh3IZw8+x+Eo0kiEyW3J0PrHm5/YQkokArnFCwJuWz4QpTW4yKBJaO86SmO1Q2awHM61dvijJbiK2Nlx/Eu7UjMlhk0kkF+UeaosQflk0wRae+bf9JNXIH5/hMQXUPaVpwwSgINBK+QJOwCszVbxTBDZGGNO48mVCY6pr8j39xKWX+fiW/Lb18lcxnc6MErpAFjX5Mmuru2yo2XIUw32IZCCyGXZnF4E8049N8IviJjDpPih6149JCGE5ILl0AZGBEMeD9Zy+ok2WxHDCkYYSWw8CNmU66q7MxdR0/vUbw3z6Rxq5cG38z16I7NffAJDsrHBAGVn/23UiTVt7QelHXwU4tnfDCjdNlCT27mpGM1+engkEj/mF+Cfx3US/6Tnq81+ITrP6MNfo6YbfoMxaIa1jD+zjpfKZJ2ChZjhClD/RlPxw1YTvpF0Cp6hTTK7HQkX4VxfjBM0Q6JgJFiI=
+  app: vendaprodutosweb
+  on:
+    repo: felipemiotto/vendaprodutosweb
